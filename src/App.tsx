@@ -6,10 +6,9 @@ import {
   Platform,
   TouchableHighlight,
   Animated,
-  Easing,
 } from 'react-native';
 
-import {Button} from 'react-native-elements'
+import {Button} from 'react-native-elements';
 
 const logo = require('./logo.png');
 
@@ -18,9 +17,7 @@ class App extends Component {
     spinValue: new Animated.Value(0),
   };
 
-  onClick = () => {
-
-  };
+  onClick = () => {};
 
   render() {
     const spin = this.state.spinValue.interpolate({
@@ -52,7 +49,7 @@ class App extends Component {
           underlayColor={'#0A84D0'}>
           <Text style={styles.buttonText}>Rotate Logo</Text>
         </TouchableHighlight>
-        <Button></Button>
+        <Button title="Solid Button 3" />
       </View>
     );
   }

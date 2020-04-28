@@ -7,6 +7,6 @@ import App from './App';
 describe('App', () => {
   it('has the right amount of children', () => {
     const tree = renderer.create(<App />).toJSON();
-    expect(tree.children.length).toBe(Platform.OS === 'web' ? 5 : 6);
+    expect(tree.children.length).toBe(Platform.OS === 'web' ? 6 : 7);
   });
 });
