@@ -2,7 +2,7 @@ import React from 'react';
 import {Platform} from 'react-native';
 import renderer from 'react-test-renderer';
 
-import App from './App';
+import App from './../App';
 
 describe('App', () => {
   it('has the right amount of children', () => {

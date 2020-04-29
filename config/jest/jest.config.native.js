@@ -3,6 +3,14 @@ module.exports = {
   rootDir: '../../',
   roots: ['<rootDir>/src'],
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
+  displayName: {
+    name: 'MainApp',
+    color: 'blue',
+  },
+  // bail: true,  //  stop at first failing test
+  // automock: false,
+  // notify: true,
+  // notifyMode: 'failure',
   // // setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
