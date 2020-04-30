@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "web": "node scripts/start.js",
-    "test:web": "react-app-rewired scripts/test.js",
+    "web": "react-app-rewired start",
+    "test:web": "react-app-rewired jest",
     "build": "react-app-rewired build",
-    "start": "react-app-rewired start",
+    "start": "npm run web",
     "start-clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm start -- --reset-cache",
     "test": "npm run test:web && npm run test:native",
     "android": "react-native run-android",

@@ -12,6 +12,8 @@ import {Button} from 'react-native-elements';
 
 const logo = require('./logo.png');
 
+// https://www.reactnativeschool.com/easily-manage-different-environment-configurations-in-react-native
+
 class App extends Component {
   state = {
     spinValue: new Animated.Value(0),
@@ -49,7 +51,7 @@ class App extends Component {
           underlayColor={'#0A84D0'}>
           <Text style={styles.buttonText}>Rotate Logo</Text>
         </TouchableHighlight>
-        <Button title="Solid Button 3" />
+        <Button title={process.env.REACT_APP_NOT_SECRET_CODE} />
       </View>
     );
   }
