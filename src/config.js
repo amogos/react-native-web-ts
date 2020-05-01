@@ -3,7 +3,7 @@ import {Platform} from 'react-native';
 const LOCAL_HOST = Platform.OS === 'android' ? '10.0.2.2' : 'localhost';
 const GRAPHQL_PRODUCTION_URL = 'https://betterreads.prod/graphql';
 const GRAPHQL_DEVELOPMENT_URL = 'https://betterreads.dev/graphql';
-const GRAPHQL_LOCAL_URL = `https://${LOCAL_HOST}/graphql`;
+const GRAPHQL_LOCAL_URL = `${LOCAL_HOST}:4000/graphql`;
 
 const allConfigs = {
   local: {
@@ -20,8 +20,8 @@ const allConfigs = {
   },
 };
 
-const target = process.env.NODE_ENV || 'local';
-//const target = 'local';
+//const target = process.env.NODE_ENV || 'local';
+const target = 'local';
 const REACT_APP_GRAPHQL_URL = allConfigs[target].REACT_APP_GRAPHQL_URL;
 
 export default {
