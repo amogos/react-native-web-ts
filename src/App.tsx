@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import {Button} from 'react-native-elements';
+import config  from './config';
 
 const logo = require('./logo.png');
 
@@ -49,7 +50,7 @@ class App extends Component {
           underlayColor={'#0A84D0'}>
           <Text style={styles.buttonText}>Rotate Logo</Text>
         </TouchableHighlight>
-        <Button title={process.env.REACT_APP_API_URL} />
+        <Button title={config.REACT_APP_GRAPHQL_URL} />
       </View>
     );
   }
