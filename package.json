@@ -10,7 +10,9 @@
     "start-clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm start -- --reset-cache",
     "test": "npm run test:web && npm run test:native",
     "android": "react-native run-android",
+    "android:release": "react-native run-android --variant release",
     "ios": "react-native run-ios",
+    "ios-release": "react-native run-ios --configuration Release",
     "test:native": "node_modules/.bin/jest -c ./config/jest/jest.config.native.js"
   },
   "dependencies": {
