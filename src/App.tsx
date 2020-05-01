@@ -12,8 +12,6 @@ import {Button} from 'react-native-elements';
 
 const logo = require('./logo.png');
 
-// https://www.reactnativeschool.com/easily-manage-different-environment-configurations-in-react-native
-
 class App extends Component {
   state = {
     spinValue: new Animated.Value(0),
