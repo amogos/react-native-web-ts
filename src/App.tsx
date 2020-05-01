@@ -51,7 +51,7 @@ class App extends Component {
           underlayColor={'#0A84D0'}>
           <Text style={styles.buttonText}>Rotate Logo</Text>
         </TouchableHighlight>
-        <Button title={process.env.REACT_APP_NOT_SECRET_CODE} />
+        <Button title={process.env.REACT_APP_API_URL} />
       </View>
     );
   }
