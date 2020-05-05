@@ -1,0 +1,46 @@
+schema {
+  query: Queries
+  mutation: Mutations
+}
+
+type AuthorBooksConnectionType {
+  pageInfo: PageInfoType
+  edges: [AuthorToBooksEdgeType]
+}
+
+type AuthorToBooksEdgeType {
+  cursor: ID
+  node: BookType
+}
+
+type AuthorType {
+  id: ID
+  firstName: String
+  lastName: String
+  booksConnection(author: ID, first: Int, after: ID): AuthorBooksConnectionType
+}
+
+type BookType {
+  id: ID
+  title: String
+  author: String
+}
+
+type Mutations {
+  add_author(firstName: String, lastName: String): AuthorType
+  update_author(id: Int, firstName: String, lastName: String): Boolean
+}
+
+type PageInfoType {
+  hasNextPage: Boolean
+  endCursor: ID
+  hasPreviousPage: Boolean
+  startCursor: ID
+}
+
+type Queries {
+  author(author: ID, count: Int, cursor: ID): AuthorType
+  allAuthors: [AuthorType]
+  allBooks(author: ID, first: Int, after: ID): [BookType]
+  book(id: ID): BookType
+}

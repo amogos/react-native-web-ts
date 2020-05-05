@@ -1,60 +1,60 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Platform,
-  TouchableHighlight,
-  Animated,
-} from 'react-native';
+import {StyleSheet, Text, View, Platform} from 'react-native';
 
+import {graphql, QueryRenderer} from 'react-relay';
 import {Button} from 'react-native-elements';
-import config  from './config';
+import RelayEnv from './env/relay.env';
 
 const logo = require('./logo.png');
 
-class App extends Component {
-  state = {
-    spinValue: new Animated.Value(0),
-  };
-
-  onClick = () => {};
-
-  render() {
-    const spin = this.state.spinValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0deg', '360deg'],
-    });
-
-    return (
-      <View style={styles.container}>
-        <Animated.Image
-          source={logo}
-          style={[styles.logo, {transform: [{rotate: spin}]}]}
-        />
-        <Text style={styles.title}>Create React Native Web App</Text>
-        <Text style={styles.text}>
-          Open up src/App.js to start working on your app!
-        </Text>
-        <Text style={styles.text}>
-          Changes you make will automatically reload.
-        </Text>
-        {Platform.OS !== 'web' && (
-          <Text style={styles.text}>
-            Shake your phone to open the developer menu.
-          </Text>
-        )}
-        <TouchableHighlight
-          onPress={this.onClick}
-          style={styles.button}
-          underlayColor={'#0A84D0'}>
-          <Text style={styles.buttonText}>Rotate Logo</Text>
-        </TouchableHighlight>
-        <Button title={config.REACT_APP_GRAPHQL_URL} />
-      </View>
-    );
-  }
+interface Props {
+  allAuthors: any;
 }
+
+const renderQuery = ({error, props}: {error:any, props:any}) => {
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+  if (!props) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Create React Native Web App</Text>
+      <Text style={styles.text}>
+        Open up src/App.js to start working on your app!
+      </Text>
+      <Text style={styles.text}>
+        Changes you make will automatically reload.
+      </Text>
+      {Platform.OS !== 'web' && (
+        <Text style={styles.text}>
+          Shake your phone to open the developer menu.
+        </Text>
+      )}
+      <Button title={JSON.stringify(props.allAuthors)} />
+    </View>
+  );
+};
+
+const App = (props: any) => {
+  return (
+    <QueryRenderer
+      environment={RelayEnv}
+      query={graphql`
+        query AppQuery {
+          allAuthors {
+            firstName
+          }
+        }
+      `}
+      render={renderQuery}
+      variables={{}}
+    />
+  );
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -88,5 +88,3 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-
-export default App;
