@@ -11,7 +11,9 @@ import type { ConcreteRequest } from 'relay-runtime';
 export type AppQueryVariables = {||};
 export type AppQueryResponse = {|
   +allAuthors: ?$ReadOnlyArray<?{|
-    +firstName: ?string
+    +id: ?string,
+    +firstName: ?string,
+    +lastName: ?string,
   |}>
 |};
 export type AppQuery = {|
@@ -24,40 +26,55 @@ export type AppQuery = {|
 /*
 query AppQuery {
   allAuthors {
-    firstName
     id
+    firstName
+    lastName
   }
 }
 */
 
 const node/*: ConcreteRequest*/ = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "firstName",
-  "storageKey": null
-};
+var v0 = [
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "AuthorType",
+    "kind": "LinkedField",
+    "name": "allAuthors",
+    "plural": true,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "firstName",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "lastName",
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
     "name": "AppQuery",
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "AuthorType",
-        "kind": "LinkedField",
-        "name": "allAuthors",
-        "plural": true,
-        "selections": [
-          (v0/*: any*/)
-        ],
-        "storageKey": null
-      }
-    ],
+    "selections": (v0/*: any*/),
     "type": "Queries"
   },
   "kind": "Request",
@@ -65,38 +82,18 @@ return {
     "argumentDefinitions": [],
     "kind": "Operation",
     "name": "AppQuery",
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "AuthorType",
-        "kind": "LinkedField",
-        "name": "allAuthors",
-        "plural": true,
-        "selections": [
-          (v0/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
-    ]
+    "selections": (v0/*: any*/)
   },
   "params": {
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  allAuthors {\n    firstName\n    id\n  }\n}\n"
+    "text": "query AppQuery {\n  allAuthors {\n    id\n    firstName\n    lastName\n  }\n}\n"
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'de62caabf7c98c8882c13510de3d5ac6';
+(node/*: any*/).hash = '503d5a7d2985f4d07469e5153efc5ec3';
 
 module.exports = node;

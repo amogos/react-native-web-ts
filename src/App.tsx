@@ -16,7 +16,7 @@ const renderQuery = ({error, props}: {error:any, props:any}) => {
     return <div>{error.message}</div>;
   }
   if (!props) {
-    return <div>Loading...</div>;
+    return <Text>Loading...</Text>;
   }
   return (
     <View style={styles.container}>
@@ -44,7 +44,9 @@ const App = (props: any) => {
       query={graphql`
         query AppQuery {
           allAuthors {
-            firstName
+            id,
+            firstName,
+            lastName
           }
         }
       `}
