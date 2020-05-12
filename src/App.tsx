@@ -53,7 +53,7 @@ const renderQuery = ({error, props}: {error: any; props: any}) => {
           PlaceholderContent={<ActivityIndicator />}
         />
       </View>
-      <Text style={styles.title}>React Native Web App Skeleton, TS And GraphQL Ready</Text>
+      <Text style={styles.title}>React Native Web App Skeleton, TS, Jest And GraphQL Ready</Text>
       <Text style={styles.text}>
         Open up src/App.js to start working on your app!
       </Text>
