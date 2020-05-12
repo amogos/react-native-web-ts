@@ -1,8 +1,8 @@
 # React Native Web App TypeScript And GraphQL ready.
 
 ![React Native Web](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRuqL5v3VYHbNJYWi8M1KwceXLK01c-PB7maW8IiwoEEUHrsHv4&usqp=CAU)
-![GraphQL](link-to-image)
-![TypeScript](link-to-image)
+![GraphQL](https://graphql.org/img/logo.svg)
+![TypeScript](https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png)
 
 ## Installation
 
