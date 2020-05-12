@@ -1,5 +1,9 @@
 # React Native Web App TypeScript And GraphQL ready.
 
+![React Native Web](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRuqL5v3VYHbNJYWi8M1KwceXLK01c-PB7maW8IiwoEEUHrsHv4&usqp=CAU)
+![GraphQL](link-to-image)
+![TypeScript](link-to-image)
+
 ## Installation
 
 ```sh
