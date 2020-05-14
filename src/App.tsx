@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import {graphql, QueryRenderer} from 'react-relay';
 import {Image} from 'react-native-elements';
-import RelayEnv from './env/relay.env';
 
 const logo = require('./logo.png');
 
@@ -72,7 +71,7 @@ const renderQuery = ({error, props}: {error: any; props: any}) => {
 const App = (props: any) => {
   return (
     <QueryRenderer
-      environment={RelayEnv}
+      environment={props.environment}
       query={graphql`
         query AppQuery {
           allAuthors {
