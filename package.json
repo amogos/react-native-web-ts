@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "web": "react-app-rewired start",
-    "test:web": "react-app-rewired jest",
+    "test:web": "node ./config/jest/test.js -c ./config/jest/jest.config.native.js",
     "chrome:debug": "./chrome.bat",
     "build": "react-app-rewired build",
     "start": "npm run web",
