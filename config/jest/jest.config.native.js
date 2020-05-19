@@ -3,6 +3,7 @@ module.exports = {
   rootDir: '../../',
   roots: ['<rootDir>/src'],
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
+  setupFiles: ['./node_modules/react-native-gesture-handler/jestSetup.js'],
   displayName: {
     name: 'MainApp',
     color: 'blue',
@@ -28,10 +29,12 @@ module.exports = {
   //   '^.+\\.module\\.(css|sass|scss)$',
   // ],
   // modulePaths: [],
-  // moduleNameMapper: {
-  //   '^react-native$': 'react-native-web',
-  //   '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
-  // },
+  moduleNameMapper: {
+    '^react-native$': 'react-native',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/assetsTransformer.js',
+    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+  },
   // moduleFileExtensions: [
   //   'web.js',
   //   'js',
