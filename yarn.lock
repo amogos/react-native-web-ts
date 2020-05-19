@@ -1791,13 +1791,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-navigation@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@types/react-navigation/-/react-navigation-3.4.0.tgz#d610d13c9162312079a8ca102660143f07432cbf"
-  integrity sha512-Y7F5zU8BTBK8tEOvUqgvwvPZ7+9vnc2UI1vHwJ/9ZJG98TntNv04GWa6lrn4MA4149pqw6cyNw/V49Yd2osAFQ==
-  dependencies:
-    react-navigation "*"
-
 "@types/react-relay@^7.0.6":
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-7.0.6.tgz#daf055d4da0b022abb4acf483cb28cd769d8f2cd"
@@ -11570,7 +11563,7 @@ react-navigation-stack@^2.5.1:
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
 
-react-navigation@*, react-navigation@^4.3.9:
+react-navigation@^4.3.9:
   version "4.3.9"
   resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.3.9.tgz#3b6a7224ac2ef6388593412c33aed6eacca10cbb"
   integrity sha512-nqAHS7jL1hgFPZeYt1vU8zVuF2Ay3bVVdCYvJSFJ9UvQZOtqPr/Wen/Ya9fRc+AvTtf3+AJn97K8xIiz2HHusQ==
