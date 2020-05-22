@@ -1,18 +1,18 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {withNavigation} from 'react-navigation';
 
 import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
 import RelayEnv from './env/relay.env';
-import {Environment} from 'react-relay';
 
 const Stack = createStackNavigator();
 
 function withEnvironment(WrappedComponent: any) {
   return class extends React.Component<any, any> {
     public render() {
-      return <WrappedComponent environment={RelayEnv} />;
+      return <WrappedComponent {...this.props} environment={RelayEnv} />;
     }
   };
 }
@@ -22,12 +22,9 @@ export default () => (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="Home"
-        component={withEnvironment(HomeScreen)}
+        component={withEnvironment(withNavigation(HomeScreen))}
       />
-      <Stack.Screen
-        name="About"
-        component={withEnvironment(AboutScreen)}
-      />
+      <Stack.Screen name="About" component={withEnvironment(withNavigation(AboutScreen))} />
     </Stack.Navigator>
   </NavigationContainer>
 );

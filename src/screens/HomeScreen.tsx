@@ -7,20 +7,13 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {graphql, QueryRenderer} from 'react-relay';
-import {Image} from 'react-native-elements';
-
+import {Image, Button} from 'react-native-elements';
 
 interface Props {
   allAuthors: any;
 }
 
-const renderQuery = ({error, props}: {error: any; props: any}) => {
-  if (error) {
-    return <Text>{error.message}</Text>;
-  }
-  if (!props) {
-    return <Text>Loading...</Text>;
-  }
+const SuccessView = (props: any) => {
   return (
     <View style={styles.container}>
       <Image
@@ -32,6 +25,10 @@ const renderQuery = ({error, props}: {error: any; props: any}) => {
         PlaceholderContent={<ActivityIndicator />}
       />
       <View style={styles.tech}>
+        <Button
+          title="Go to About"
+          onPress={() => props.navigation.navigate('About')}
+        />
         <Image
           source={{
             uri:
@@ -74,10 +71,28 @@ const renderQuery = ({error, props}: {error: any; props: any}) => {
   );
 };
 
+const renderQuery = (
+  renderProps: {error: any; props: any},
+  navigation: any,
+) => {
+  const {error, props} = renderProps;
+
+  if (error) {
+    return <Text>{error.message}</Text>;
+  }
+  if (!props) {
+    return <Text>Loading...</Text>;
+  }
+  let screenProps = {...props, navigation};
+  return <SuccessView {...screenProps} />;
+};
+
 const HomeScreen = (props: any) => {
+  const {navigation, environment} = props;
+
   return (
     <QueryRenderer
-      environment={props.environment}
+      environment={environment}
       query={graphql`
         query HomeScreenQuery {
           allAuthors {
@@ -87,7 +102,7 @@ const HomeScreen = (props: any) => {
           }
         }
       `}
-      render={renderQuery}
+      render={renderProps => renderQuery(renderProps, navigation)}
       variables={{}}
     />
   );
