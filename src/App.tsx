@@ -3,17 +3,16 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {withNavigation} from 'react-navigation';
 import {Image} from 'react-native-elements';
-
 import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
-import RelayEnv from './env/relay.env';
+import RelayEnvironment from './RelayEnvironment';
 
 const Tab = createBottomTabNavigator();
 
 function withEnvironment(WrappedComponent: any) {
   return class extends React.Component<any, any> {
     public render() {
-      return <WrappedComponent {...this.props} environment={RelayEnv} />;
+      return <WrappedComponent {...this.props} environment={RelayEnvironment} />;
     }
   };
 }
