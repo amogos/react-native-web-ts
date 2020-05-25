@@ -45,15 +45,15 @@ function Home() {
         tabBarIcon: ({focused, color, size}) => {
           let icon;
 
-          if (route.name === 'Home') {
+          if (route.name === 'home') {
             icon = focused
               ? require('./icons/home.jpg')
               : require('./icons/home.jpg');
-          } else if (route.name === 'Search') {
+          } else if (route.name === 'search') {
             icon = focused
               ? require('./icons/search.jpg')
               : require('./icons/search.jpg');
-          } else if (route.name === 'Profile') {
+          } else if (route.name === 'profile') {
             icon = focused
               ? require('./icons/profile.jpg')
               : require('./icons/profile.jpg');
@@ -66,20 +66,21 @@ function Home() {
         inactiveTintColor: 'gray',
       }}>
       <Tab.Screen
-        name="Home"
+        name="home"
         component={withEnvironment(withNavigation(HomeScreen))}
       />
       <Tab.Screen
-        name="Search"
+        name="search"
         component={withEnvironment(withNavigation(SearchScreen))}
       />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
 
 export default () => (
-  <NavigationContainer>
+  <NavigationContainer
+    linking={{enabled: true, prefixes: ['https://myapp.com', 'myapp://']}}>
     <Home />
   </NavigationContainer>
 );
