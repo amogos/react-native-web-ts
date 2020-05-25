@@ -1,24 +1,44 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
 import {withNavigation} from 'react-navigation';
 import {Image} from 'react-native-elements';
-import HomeScreen from './screens/HomeScreen';
-import AboutScreen from './screens/AboutScreen';
+
 import RelayEnvironment from './RelayEnvironment';
 
-const Tab = createBottomTabNavigator();
+import HomeScreen from './screens/HomeScreen';
+import SearchScreen from './screens/SearchScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import ErrorScreen from './screens/ErrorScreen';
+import LoadingScreen from './screens/LoadingScreen';
 
 function withEnvironment(WrappedComponent: any) {
   return class extends React.Component<any, any> {
     public render() {
-      return <WrappedComponent {...this.props} environment={RelayEnvironment} />;
+      return (
+        <WrappedComponent {...this.props} environment={RelayEnvironment} />
+      );
     }
   };
 }
 
-export default () => (
-  <NavigationContainer>
+const Stack = createStackNavigator();
+
+function Profile() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Feed" component={ErrorScreen} />
+      <Stack.Screen name="Notifications" component={LoadingScreen} />
+    </Stack.Navigator>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+function Home() {
+  return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({route}) => ({
@@ -29,7 +49,11 @@ export default () => (
             icon = focused
               ? require('./icons/home.jpg')
               : require('./icons/home.jpg');
-          } else if (route.name === 'About') {
+          } else if (route.name === 'Search') {
+            icon = focused
+              ? require('./icons/search.jpg')
+              : require('./icons/search.jpg');
+          } else if (route.name === 'Profile') {
             icon = focused
               ? require('./icons/profile.jpg')
               : require('./icons/profile.jpg');
@@ -46,9 +70,16 @@ export default () => (
         component={withEnvironment(withNavigation(HomeScreen))}
       />
       <Tab.Screen
-        name="About"
-        component={withEnvironment(withNavigation(AboutScreen))}
+        name="Search"
+        component={withEnvironment(withNavigation(SearchScreen))}
       />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
+  );
+}
+
+export default () => (
+  <NavigationContainer>
+    <Home />
   </NavigationContainer>
 );
