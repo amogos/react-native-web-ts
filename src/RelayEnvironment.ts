@@ -1,7 +1,7 @@
-import AppEnv from './app.env';
+import AppEnv from './AppEnvironment';
 import {Environment, Network, RecordSource, Store} from 'relay-runtime';
 
-function fetchQuery(operation, variables) {
+function fetchQuery(operation: any, variables: any) {
   console.log(AppEnv.REACT_APP_GRAPHQL_URL);
   return fetch(AppEnv.REACT_APP_GRAPHQL_URL, {
     method: 'POST',
@@ -19,9 +19,9 @@ function fetchQuery(operation, variables) {
   });
 }
 
-const RelayEnv = new Environment({
+const RelayEnvironment = new Environment({
   network: Network.create(fetchQuery),
   store: new Store(new RecordSource()),
 });
 
-export default RelayEnv;
+export default RelayEnvironment;

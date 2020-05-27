@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeScreen.test Render State 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "position": "relative",
+      }
+    }
+  >
+    <Image
+      onLoad={[Function]}
+      source={
+        Object {
+          "process": [Function],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": 128,
+            "width": 128,
+          },
+        ]
+      }
+      testID="RNE__Image"
+      theme={
+        Object {
+          "colors": Object {
+            "disabled": "hsl(208, 8%, 90%)",
+            "divider": "#bcbbc1",
+            "error": "#ff190c",
+            "grey0": "#393e42",
+            "grey1": "#43484d",
+            "grey2": "#5e6977",
+            "grey3": "#86939e",
+            "grey4": "#bdc6cf",
+            "grey5": "#e1e8ee",
+            "greyOutline": "#bbb",
+            "platform": Object {
+              "android": Object {
+                "error": "#f44336",
+                "primary": "#2196f3",
+                "secondary": "#9C27B0",
+                "success": "#4caf50",
+                "warning": "#ffeb3b",
+              },
+              "ios": Object {
+                "error": "#ff3b30",
+                "primary": "#007aff",
+                "secondary": "#5856d6",
+                "success": "#4cd964",
+                "warning": "#ffcc00",
+              },
+            },
+            "primary": "#2089dc",
+            "searchBg": "#303337",
+            "secondary": "#8F0CE8",
+            "success": "#52c41a",
+            "warning": "#faad14",
+          },
+        }
+      }
+    />
+    <View
+      accessibilityElementsHidden={true}
+      importantForAccessibility="no-hide-descendants"
+      pointerEvents="none"
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "opacity": 1,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#bdbdbd",
+            "height": 128,
+            "justifyContent": "center",
+            "width": 128,
+          }
+        }
+        testID="RNE__Image__placeholder"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "height": 128,
+          "width": 128,
+        }
+      }
+    />
+  </View>
+</View>
+`;
