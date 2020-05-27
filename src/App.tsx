@@ -14,6 +14,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import ErrorScreen from './screens/ErrorScreen';
 import LoadingScreen from './screens/LoadingScreen';
 
+
 function withEnvironment(WrappedComponent: any) {
   return class extends React.Component<any, any> {
     public render() {
