@@ -1,11 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {Button} from 'react-native-elements';
 
-import {graphql, QueryRenderer} from 'react-relay';
-import {Image} from 'react-native-elements';
-
-import ErrorScreen from './ErrorScreen';
-import LoadingScreen from './LoadingScreen';
+import AudioPlaylistController from '../audio-player/AudioPlaylistController';
+import {AudioPlayableItem} from '../audio-player/AudioPlayer';
 
 interface Props {
   environment: any;
@@ -13,43 +11,34 @@ interface Props {
   renderProps: any;
 }
 
+const icon = require('../icons/home.jpg');
+
+const testPlaylist: AudioPlayableItem[] = [
+  {
+    title: 'test title',
+    artwork: 'none',
+    id: 'id01',
+    url: require('../audio-player/assets/track.mp3'),
+    artist: 'unknown',
+  },
+];
+
 export default (props: any) => {
   const {navigation, environment} = props;
 
-  const renderQuery = (renderProps: any) => {
-    const {error, props} = renderProps;
-
-    if (error) {
-      return <ErrorScreen navigation={navigation} error={renderProps.error} />;
-    }
-    if (!props) {
-      return <LoadingScreen navigation={navigation} />;
-    }
-
-    const icon = require('../icons/home.jpg');
-
-    return (
-      <View style={styles.container}>
-        <Image source={icon} style={{width: 128, height: 128}} />
-      </View>
-    );
+  const togglePlay = async () => {
+    await AudioPlaylistController.addToPlaylist(...testPlaylist);
+    AudioPlaylistController.togglePlay();
   };
 
   return (
-    <QueryRenderer
-      environment={environment}
-      query={graphql`
-        query HomeScreenQuery {
-          allAuthors {
-            id
-            firstName
-            lastName
-          }
-        }
-      `}
-      render={renderQuery}
-      variables={{}}
-    />
+    <View style={styles.container}>
+      <Button
+        title="play"
+        style={{width: 128, height: 128}}
+        onPress={togglePlay}
+      />
+    </View>
   );
 };
 

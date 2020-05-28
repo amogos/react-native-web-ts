@@ -16,6 +16,7 @@ module.exports = override(
     path.resolve(__dirname, 'node_modules/react-native-vector-icons'),
     path.resolve(__dirname, 'node_modules/react-native-ratings'),
     path.resolve(__dirname, 'node_modules/react-native-reanimated'),
+    path.resolve(__dirname, 'node_modules/react-native-track-player'),
     path.resolve(__dirname, 'node_modules/react-scripts'),
     path.resolve(__dirname, 'node_modules/react-relay'),
     path.resolve(__dirname, 'src'),

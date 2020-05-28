@@ -1,6 +1,6 @@
 import TrackPlayer, {Track} from 'react-native-track-player';
 
-export interface PlayableItem extends Track {
+export interface AudioPlayableItem extends Track {
   title: string;
   artwork: string;
   artist: string;
@@ -13,15 +13,13 @@ class AudioPlayer {
     if (!AudioPlayer.instance) {
       AudioPlayer.instance = new AudioPlayer();
       AudioPlayer.instance.init();
-      return AudioPlayer.instance;
     }
+    return AudioPlayer.instance;
   }
 
   private init() {
     // set up the player so we can use it
-    TrackPlayer.setupPlayer({
-      iosCategoryMode: 'spokenAudio',
-    });
+    TrackPlayer.setupPlayer();
 
     // add support for capabilities
     const capabilities = [
@@ -43,7 +41,7 @@ class AudioPlayer {
     TrackPlayer.updateOptions(options);
   }
 
-  private createTrack = (item: PlayableItem): Track => {
+  private createTrack = (item: AudioPlayableItem): Track => {
     const {url, title, id, artwork, artist} = item;
     const track = {
       id,
@@ -97,7 +95,7 @@ class AudioPlayer {
     return trackId;
   }
 
-  prependToQueue = async (playables: PlayableItem[] | PlayableItem) => {
+  prependToQueue = async (playables: AudioPlayableItem[] | AudioPlayableItem) => {
     const audioFiles = Array.isArray(playables)
       ? playables.map(item => this.createTrack(item))
       : this.createTrack(playables);
@@ -106,7 +104,7 @@ class AudioPlayer {
     TrackPlayer.add(audioFiles, currentTrackId);
   };
 
-  appendToQueue = (playables: PlayableItem[] | PlayableItem) => {
+  appendToQueue = (playables: AudioPlayableItem[] | AudioPlayableItem) => {
     const audioFiles = Array.isArray(playables)
       ? playables.map(item => this.createTrack(item))
       : this.createTrack(playables);

@@ -1,9 +1,9 @@
-import AudioPlayer, {PlayableItem} from './AudioPlayer'
+import AudioPlayer, {AudioPlayableItem} from './AudioPlayer'
 
 interface AudioPlaylist {
   id: string;
-  playableItems: PlayableItem[];
-  playingItem: PlayableItem | null;
+  playableItems: AudioPlayableItem[];
+  playingItem: AudioPlayableItem | null;
 }
 
 const emptyPlaylist: AudioPlaylist = {
@@ -21,7 +21,12 @@ class AudioPlaylistController {
 
   private onTrackChange = async () => {
     await this.updateCurrentPlayingItem()
-}
+  }
+
+  isPlaying = async () => {
+    const audioPlayer = AudioPlayer.getInstance();
+    return await audioPlayer?.isPlaying();
+  }
 
   togglePlay = async () => {
     const audioPlayer = AudioPlayer.getInstance();
@@ -46,14 +51,14 @@ class AudioPlaylistController {
     AudioPlayer.getInstance()?.previous();
   }
 
-  addToPlaylist = async (...items: PlayableItem[]) => {
+  addToPlaylist = async (...items: AudioPlayableItem[]) => {
     this.playlist.playableItems = [...this.playlist.playableItems, ...items];
-    return Promise.all(items.map(item => AudioPlayer.getInstance()?.appendToQueue(item.data)))
+    return Promise.all(items.map(item => AudioPlayer.getInstance()?.appendToQueue(item)))
   }
 
-  prependToPlaylist = (...items: PlayableItem[]) => {
+  prependToPlaylist = (...items: AudioPlayableItem[]) => {
     this.playlist.playableItems = [...items, ...this.playlist.playableItems];
-    return Promise.all(items.map(item => AudioPlayer.getInstance()?.prependToQueue(item.data)))
+    return Promise.all(items.map(item => AudioPlayer.getInstance()?.prependToQueue(item)))
   }
 
   clearPlaylist = () => {
