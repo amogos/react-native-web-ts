@@ -1,4 +1,5 @@
 import AudioPlayer, {AudioPlayableItem} from './AudioPlayer'
+import { call } from 'react-native-reanimated';
 
 interface AudioPlaylist {
   id: string;
@@ -14,13 +15,25 @@ const emptyPlaylist: AudioPlaylist = {
 
 class AudioPlaylistController {
   playlist: AudioPlaylist = emptyPlaylist;
+  trackChanged:((track: AudioPlayableItem|null) => void) | undefined;
 
   constructor() {
     AudioPlayer.addTrackChangeListener(this.onTrackChange)
   }
 
-  private onTrackChange = async () => {
-    await this.updateCurrentPlayingItem()
+  addTrackChangeListener = (callback : (track:AudioPlayableItem|null) => void) => {
+    this.trackChanged = callback;
+  }
+
+  getDuration = async () => {
+    return await AudioPlayer.getInstance().getDuration();
+  }
+
+  private onTrackChange = async (data:any) => {
+    await this.updateCurrentPlayingItem();
+    if (this.trackChanged) {
+      this.trackChanged(this.playlist.playingItem);
+    }
   }
 
   isPlaying = async () => {
@@ -39,16 +52,22 @@ class AudioPlaylistController {
     }
   }
 
-  pause = () =>{
+  pause = () => {
     AudioPlayer.getInstance()?.pause();
   }
 
-  next = () => {
-    AudioPlayer.getInstance()?.next();
+  next = async () => {
+    const lastTrack = this.playlist.playableItems[this.playlist.playableItems.length - 1];
+    if (lastTrack.id !== this.playlist.playingItem?.id) {
+      await AudioPlayer.getInstance()?.next();
+    }
   }
 
-  previous = () => {
-    AudioPlayer.getInstance()?.previous();
+  previous = async () => {
+    const firstTrack = this.playlist.playableItems[0];
+    if (firstTrack.id !== this.playlist.playingItem?.id) {
+      await AudioPlayer.getInstance()?.previous();
+    }
   }
 
   addToPlaylist = async (...items: AudioPlayableItem[]) => {

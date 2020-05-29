@@ -4,6 +4,7 @@ export interface AudioPlayableItem extends Track {
   title: string;
   artwork: string;
   artist: string;
+  duration: number;
 }
 
 class AudioPlayer {
@@ -55,7 +56,7 @@ class AudioPlayer {
     return track;
   };
 
-  static addTrackChangeListener = (callback: () => void) => {
+  static addTrackChangeListener = (callback: (data: any) => void) => {
     TrackPlayer.addEventListener('playback-track-changed', callback);
   };
 
@@ -81,21 +82,27 @@ class AudioPlayer {
     }
   };
 
-  next = () => {
-    TrackPlayer.skipToNext();
+  next = async () => {
+    await TrackPlayer.skipToNext();
   };
 
-  previous = () => {
-    TrackPlayer.skipToPrevious();
+  previous = async () => {
+    await TrackPlayer.skipToPrevious();
   };
-
 
   getCurrentTrackId = async () => {
-    let trackId =  await TrackPlayer.getCurrentTrack();
+    let trackId = await TrackPlayer.getCurrentTrack();
     return trackId;
-  }
+  };
 
-  prependToQueue = async (playables: AudioPlayableItem[] | AudioPlayableItem) => {
+  getDuration = async () => {
+    let duration = await TrackPlayer.getDuration();
+    return duration;
+  };
+
+  prependToQueue = async (
+    playables: AudioPlayableItem[] | AudioPlayableItem,
+  ) => {
     const audioFiles = Array.isArray(playables)
       ? playables.map(item => this.createTrack(item))
       : this.createTrack(playables);
