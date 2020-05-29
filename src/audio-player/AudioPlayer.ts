@@ -27,6 +27,11 @@ class AudioPlayer {
       TrackPlayer.CAPABILITY_PLAY,
       TrackPlayer.CAPABILITY_PAUSE,
       TrackPlayer.CAPABILITY_SEEK_TO,
+      TrackPlayer.CAPABILITY_SKIP,
+      TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+      TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+      TrackPlayer.CAPABILITY_JUMP_FORWARD,
+      TrackPlayer.CAPABILITY_JUMP_BACKWARD,
     ];
 
     // list of options for the player
@@ -64,8 +69,12 @@ class AudioPlayer {
     TrackPlayer.reset();
   };
 
-  pause = () => {
-    TrackPlayer.pause();
+  play = async () => {
+    await TrackPlayer.play();
+  };
+  
+  pause = async () => {
+    await TrackPlayer.pause();
   };
 
   isPlaying = async () => {
@@ -80,6 +89,10 @@ class AudioPlayer {
     } else {
       return TrackPlayer.play();
     }
+  };
+
+  seekTo = async (position: number) => {
+    await TrackPlayer.seekTo(position);
   };
 
   next = async () => {
@@ -117,6 +130,19 @@ class AudioPlayer {
       : this.createTrack(playables);
     TrackPlayer.add(audioFiles);
   };
+}
+
+const eventHandler = async (data: any) => {
+  let position;
+  switch (data.type) {
+    case 'remote-seek':
+      position = await TrackPlayer.getPosition();
+      break;
+  }
+};
+
+export function registerAudioPlayerEventHandler() {
+  TrackPlayer.registerEventHandler(eventHandler);
 }
 
 export default AudioPlayer;

@@ -60,6 +60,7 @@ export default (props: any) => {
   const trackChanged = (track: AudioPlayableItem | null) => {
     if (track) {
       setDuration(track.duration);
+      setPosition(0);
     }
   };
 
@@ -67,8 +68,8 @@ export default (props: any) => {
     await AudioPlaylistController.togglePlay();
   };
 
-  const slideTrack = async (value: number) => {
-    setPosition(value);
+  const slideTrack = async (position: number) => {
+    await AudioPlaylistController.seekTo(position);
   };
 
   const playPreviousTrack = async () => {
@@ -91,13 +92,14 @@ export default (props: any) => {
       />
       <Slider
         style={styles.slider}
-        maximumValue={1}
+        maximumValue={duration}
         minimumValue={0}
         minimumTrackTintColor="#307ecc"
         maximumTrackTintColor="#000000"
         value={position}
         thumbStyle={styles.thumbstyle}
-        onValueChange={slideTrack}
+        onValueChange={value => setPosition(value)}
+        onSlidingComplete={slideTrack}
       />
       <Text>Value: {position}</Text>
       <Button

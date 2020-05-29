@@ -52,8 +52,14 @@ class AudioPlaylistController {
     }
   }
 
-  pause = () => {
-    AudioPlayer.getInstance()?.pause();
+  pause = async () => {
+    await AudioPlayer.getInstance()?.pause();
+  }
+
+  seekTo = async (position:number) => {
+    await AudioPlayer.getInstance()?.pause();
+    await AudioPlayer.getInstance()?.seekTo(position);
+    await AudioPlayer.getInstance()?.play();
   }
 
   next = async () => {
