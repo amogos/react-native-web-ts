@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Button, Image, Slider, Text} from 'react-native-elements';
+import React from 'react';
+
 
 import AudioPlayerScreen from '../audio-player/AudioPlayerView';
 import {AudioPlayableItem} from '../audio-player/AudioPlayer';
@@ -12,6 +11,7 @@ interface Props {
 }
 
 const icon = require('../icons/home.jpg');
+
 
 const testPlaylist: AudioPlayableItem[] = [
   {
@@ -37,14 +37,13 @@ const testPlaylist: AudioPlayableItem[] = [
     artwork:
       'https://www.sailer-verlag.de/wp-content/uploads/2019/09/I-Love-English-Junior-Kinderzeitschrift-kategorie.jpg',
     id: 'id03',
-    url: require('../audio-player/assets/10TomGehtUnterDiePiraten.mp3'),
+    url: require('../audio-player/assets/sample-music.mp3'),
     artist: 'unknown',
-    duration: 435,
+    duration: 61,
   },
 ];
 
-export default (props: any) => {
-  return <AudioPlayerScreen playlist={testPlaylist} />;
-};
 
-const styles = StyleSheet.create({});
+export default (props: any) => {
+  return <AudioPlayerScreen playlist = {testPlaylist} />;
+};

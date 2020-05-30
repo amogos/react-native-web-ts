@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, SafeAreaView, ActivityIndicator} from 'react-native';
-import {Button, Image, Slider, Text} from 'react-native-elements';
+import {
+  StyleSheet,
+  View,
+  ActivityIndicator,
+  SafeAreaView,
+  Image,
+} from 'react-native';
+import {Button, Slider, Text} from 'react-native-elements';
 
 import AudioPlaylistController from './AudioPlaylistController';
 import {AudioPlayableItem} from './AudioPlayer';
@@ -9,7 +15,10 @@ export default (props: any) => {
   const {playlist} = props;
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [cover, setCover] = useState('');
+  const [cover, setCover] = useState(
+    'https://vo2max.de/wp-content/uploads/2018/04/no-image.jpg',
+  );
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
     async function reset() {
@@ -25,6 +34,7 @@ export default (props: any) => {
       setDuration(track.duration);
       setPosition(0);
       setCover(track.artwork);
+      setTitle(track.title);
     }
   };
 
@@ -44,18 +54,48 @@ export default (props: any) => {
     await AudioPlaylistController.next();
   };
 
+  const AudioControls = () => {
+    return (
+      <View style={styles.controls}>
+        <Button
+          title="<<"
+          onPress={playPreviousTrack}
+          style={{width: 200, height: 10}}
+        />
+        <Button
+          title="play"
+          onPress={togglePlay}
+          style={{width: 200, height: 10}}
+        />
+        <Button
+          title=">>"
+          onPress={playNextTrack}
+          style={{width: 200, height: 10}}
+        />
+      </View>
+    );
+  };
+
+  const Header = () => {
+    return <Text style={styles.title}>{title}</Text>;
+  };
+
   return (
-    <SafeAreaView>
-      <Text>Duration: {duration}</Text>
+    <SafeAreaView style={styles.container}>
+      <Header />
       <Image
+        style={{
+          width: '85%',
+          height: '50%',
+          marginTop: '3%',
+          marginBottom: '5%',
+        }}
         source={{
           uri: cover,
         }}
-        style={styles.cover}
-        PlaceholderContent={<ActivityIndicator />}
       />
       <Slider
-        style={styles.slider}
+        style={{width: '85%', height: '1%'}}
         maximumValue={duration}
         minimumValue={0}
         minimumTrackTintColor="#307ecc"
@@ -65,44 +105,28 @@ export default (props: any) => {
         onValueChange={value => setPosition(value)}
         onSlidingComplete={slideTrack}
       />
-      <Text>Value: {position}</Text>
-      <Button
-        title="<<"
-        onPress={playPreviousTrack}
-        style={{width: 200, height: 10}}
-      />
-      <Button
-        title="play"
-        onPress={togglePlay}
-        style={{width: 200, height: 10}}
-      />
-      <Button
-        title=">>"
-        onPress={playNextTrack}
-        style={{width: 200, height: 10}}
-      />
+      <AudioControls />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  cover: {
-    width: '100%',
-    height: 'auto',
-    resizeMode: 'stretch',
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
   },
+  controls: {
+    marginTop: '5%',
+  },
+
   thumbstyle: {
     backgroundColor: '#000000',
-    height: 10,
+    width: 0,
   },
-  slider: {
-    backgroundColor: '#ecf0f1',
-    width: 300,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fcf0f1',
+
+  title: {
+    textAlign: 'center',
   },
 });
