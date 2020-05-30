@@ -11,8 +11,6 @@ interface Props {
   renderProps: any;
 }
 
-const icon = require('../icons/home.jpg');
-
 const testPlaylist: AudioPlayableItem[] = [
   {
     title: 'I Love English',
@@ -48,7 +46,7 @@ function Home({navigation}: {navigation: any}) {
     <View>
       <Button
         title="player"
-        onPress={() => navigation.navigate('player', {playlist: testPlaylist})}
+        onPress={() => navigation.navigate('audio-player', {playlist:testPlaylist})}
         type="clear"
       />
     </View>
@@ -61,7 +59,7 @@ export default (props: any) => {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="home" component={Home} />
-      <Stack.Screen name="player" component={AudioPlayerNavigator} />
+      <Stack.Screen name="audio-player" component={AudioPlayerNavigator} />
     </Stack.Navigator>
   );
 };

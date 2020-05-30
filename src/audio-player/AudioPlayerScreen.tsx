@@ -17,8 +17,14 @@ const backwardButtonImage = require('./assets/backward.jpg');
 const playButtonImage = require('./assets/play.jpg');
 const pauseButtonImage = require('./assets/pause.jpg');
 
+
 export default (props: any) => {
   const {playlist} = props.route.params;
+
+  if (!playlist) {
+    return <Text>ERROR: No playlist provided.</Text>;
+  }
+
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
   const [cover, setCover] = useState(
@@ -95,7 +101,7 @@ export default (props: any) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Header />
       <Image
         style={{
@@ -120,7 +126,7 @@ export default (props: any) => {
         onSlidingComplete={slideTrack}
       />
       <AudioControls />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -142,4 +148,4 @@ const styles = StyleSheet.create({
   thumbstyle: {
     backgroundColor: 'transparent',
   },
-});
+}); 
