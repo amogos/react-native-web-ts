@@ -72,7 +72,7 @@ class AudioPlayer {
   play = async () => {
     await TrackPlayer.play();
   };
-  
+
   pause = async () => {
     await TrackPlayer.pause();
   };

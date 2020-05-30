@@ -1,8 +1,9 @@
 import React from 'react';
-
-
-import AudioPlayerScreen from '../audio-player/AudioPlayerView';
+import {View} from 'react-native';
+import {Button} from 'react-native-elements';
+import {createStackNavigator} from '@react-navigation/stack';
 import {AudioPlayableItem} from '../audio-player/AudioPlayer';
+import AudioPlayerNavigator from '../audio-player/AudioPlayerNavigator';
 
 interface Props {
   environment: any;
@@ -11,7 +12,6 @@ interface Props {
 }
 
 const icon = require('../icons/home.jpg');
-
 
 const testPlaylist: AudioPlayableItem[] = [
   {
@@ -43,7 +43,25 @@ const testPlaylist: AudioPlayableItem[] = [
   },
 ];
 
+function Home({navigation}: {navigation: any}) {
+  return (
+    <View>
+      <Button
+        title="player"
+        onPress={() => navigation.navigate('player', {playlist: testPlaylist})}
+        type="clear"
+      />
+    </View>
+  );
+}
+
+const Stack = createStackNavigator();
 
 export default (props: any) => {
-  return <AudioPlayerScreen playlist = {testPlaylist} />;
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="home" component={Home} />
+      <Stack.Screen name="player" component={AudioPlayerNavigator} />
+    </Stack.Navigator>
+  );
 };
