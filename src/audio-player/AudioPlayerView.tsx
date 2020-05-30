@@ -5,11 +5,17 @@ import {
   ActivityIndicator,
   SafeAreaView,
   Image,
+  TouchableHighlight,
 } from 'react-native';
-import {Button, Slider, Text} from 'react-native-elements';
+import {Slider, Text} from 'react-native-elements';
 
 import AudioPlaylistController from './AudioPlaylistController';
 import {AudioPlayableItem} from './AudioPlayer';
+
+const forwardButtonImage = require('./assets/forward.jpg');
+const backwardButtonImage = require('./assets/backward.jpg');
+const playButtonImage = require('./assets/play.jpg');
+const pauseButtonImage = require('./assets/pause.jpg');
 
 export default (props: any) => {
   const {playlist} = props;
@@ -18,6 +24,8 @@ export default (props: any) => {
   const [cover, setCover] = useState(
     'https://vo2max.de/wp-content/uploads/2018/04/no-image.jpg',
   );
+  const [isPlaying, setIsPlaying] = useState(false);
+
   const [title, setTitle] = useState('');
 
   useEffect(() => {
@@ -40,6 +48,7 @@ export default (props: any) => {
 
   const togglePlay = async () => {
     await AudioPlaylistController.togglePlay();
+    setIsPlaying(!isPlaying);
   };
 
   const slideTrack = async (position: number) => {
@@ -57,27 +66,32 @@ export default (props: any) => {
   const AudioControls = () => {
     return (
       <View style={styles.controls}>
-        <Button
-          title="<<"
-          onPress={playPreviousTrack}
-          style={{width: 200, height: 10}}
-        />
-        <Button
-          title="play"
-          onPress={togglePlay}
-          style={{width: 200, height: 10}}
-        />
-        <Button
-          title=">>"
-          onPress={playNextTrack}
-          style={{width: 200, height: 10}}
-        />
+        <TouchableHighlight onPress={playPreviousTrack}>
+          <Image source={backwardButtonImage} style={{width: 50, height: 50}} />
+        </TouchableHighlight>
+        <TouchableHighlight onPress={togglePlay}>
+          <Image
+            source={isPlaying ? pauseButtonImage : playButtonImage}
+            style={{width: 50, height: 50}}
+          />
+        </TouchableHighlight>
+        <TouchableHighlight onPress={playNextTrack}>
+          <Image source={forwardButtonImage} style={{width: 50, height: 50}} />
+        </TouchableHighlight>
       </View>
     );
   };
 
   const Header = () => {
-    return <Text style={styles.title}>{title}</Text>;
+    return (
+      <Text
+        style={{
+          textAlign: 'center',
+          fontFamily: 'sans-serif',
+        }}>
+        {title}
+      </Text>
+    );
   };
 
   return (
@@ -116,17 +130,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
+    backgroundColor: '#ffffff',
   },
   controls: {
     marginTop: '5%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '100%',
   },
 
   thumbstyle: {
-    backgroundColor: '#000000',
-    width: 0,
-  },
-
-  title: {
-    textAlign: 'center',
+    backgroundColor: 'transparent',
   },
 });

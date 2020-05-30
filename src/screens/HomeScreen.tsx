@@ -15,7 +15,7 @@ const icon = require('../icons/home.jpg');
 
 const testPlaylist: AudioPlayableItem[] = [
   {
-    title: 'test title',
+    title: 'I Love English',
     artwork:
       'https://www.sailer-verlag.de/wp-content/uploads/2019/09/I-Love-English-Junior-Kinderzeitschrift-kategorie.jpg',
     id: 'id02',
@@ -24,7 +24,7 @@ const testPlaylist: AudioPlayableItem[] = [
     duration: 70,
   },
   {
-    title: 'test title',
+    title: 'I Love English',
     artwork:
       'https://www.sailer-verlag.de/wp-content/uploads/2019/09/I-Love-English-Junior-Kinderzeitschrift-kategorie.jpg',
     id: 'id01',
@@ -33,7 +33,7 @@ const testPlaylist: AudioPlayableItem[] = [
     duration: 206,
   },
   {
-    title: 'test title',
+    title: 'I Love English',
     artwork:
       'https://www.sailer-verlag.de/wp-content/uploads/2019/09/I-Love-English-Junior-Kinderzeitschrift-kategorie.jpg',
     id: 'id03',

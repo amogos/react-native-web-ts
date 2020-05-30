@@ -67,17 +67,23 @@ class AudioPlaylistController {
   }
 
   next = async () => {
-    const lastTrack = this.playlist.playableItems[this.playlist.playableItems.length - 1];
-    if (lastTrack.id !== this.playlist.playingItem?.id) {
-      await AudioPlayer.getInstance()?.next();
-    }
+    try {
+      const lastTrack = this.playlist.playableItems[this.playlist.playableItems.length - 1];
+      if (lastTrack.id !== this.playlist.playingItem?.id) {
+        await AudioPlayer.getInstance()?.next();
+      }
+    } catch(_){}
+   
   }
 
   previous = async () => {
-    const firstTrack = this.playlist.playableItems[0];
-    if (firstTrack.id !== this.playlist.playingItem?.id) {
-      await AudioPlayer.getInstance()?.previous();
-    }
+    try {
+      const firstTrack = this.playlist.playableItems[0];
+      if (firstTrack.id !== this.playlist.playingItem?.id) {
+        await AudioPlayer.getInstance()?.previous();
+      }
+    } catch(_) {}
+   
   }
 
   addToPlaylist = async (...items: AudioPlayableItem[]) => {
