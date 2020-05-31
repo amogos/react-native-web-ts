@@ -4,8 +4,8 @@ import {
   View,
   ActivityIndicator,
   SafeAreaView,
-  Image,
   TouchableHighlight,
+  Image,
 } from 'react-native';
 import {Slider, Text, Button} from 'react-native-elements';
 
@@ -16,6 +16,7 @@ const forwardButtonImage = require('./assets/forward.jpg');
 const backwardButtonImage = require('./assets/backward.jpg');
 const playButtonImage = require('./assets/play.jpg');
 const pauseButtonImage = require('./assets/pause.jpg');
+const closeButtonImage = require('./assets/close.jpg');
 
 export default (props: any) => {
   const {route, navigation} = props;
@@ -88,10 +89,15 @@ export default (props: any) => {
     );
   };
 
-  const Header = () => {
-    return (
-      <View>
-        <Button onPress={() => navigation.goBack()} title="Close" />
+  return (
+    <SafeAreaView style={{backgroundColor: '#ffffff'}}>
+      <TouchableHighlight onPress={() => navigation.goBack()}>
+        <Image
+          source={closeButtonImage}
+          style={{width: 30, height: 30, margin: 0, padding: 0}}
+        />
+      </TouchableHighlight>
+      <View style={styles.container}>
         <Text
           style={{
             textAlign: 'center',
@@ -99,37 +105,30 @@ export default (props: any) => {
           }}>
           {title}
         </Text>
+        <Image
+          style={{
+            width: '85%',
+            height: '50%',
+            marginBottom: '5%',
+          }}
+          source={{
+            uri: cover,
+          }}
+        />
+        <Slider
+          style={{width: '85%', height: '1%'}}
+          maximumValue={duration}
+          minimumValue={0}
+          minimumTrackTintColor="#307ecc"
+          maximumTrackTintColor="#000000"
+          value={position}
+          thumbStyle={styles.thumbstyle}
+          onValueChange={value => setPosition(value)}
+          onSlidingComplete={slideTrack}
+        />
+        <AudioControls />
       </View>
-    );
-  };
-
-  return (
-    <View style={styles.container}>
-      <Header />
-      <Image
-        style={{
-          width: '85%',
-          height: '50%',
-          marginTop: '3%',
-          marginBottom: '5%',
-        }}
-        source={{
-          uri: cover,
-        }}
-      />
-      <Slider
-        style={{width: '85%', height: '1%'}}
-        maximumValue={duration}
-        minimumValue={0}
-        minimumTrackTintColor="#307ecc"
-        maximumTrackTintColor="#000000"
-        value={position}
-        thumbStyle={styles.thumbstyle}
-        onValueChange={value => setPosition(value)}
-        onSlidingComplete={slideTrack}
-      />
-      <AudioControls />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -139,7 +138,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
-    backgroundColor: '#ffffff',
   },
   controls: {
     marginTop: '5%',
