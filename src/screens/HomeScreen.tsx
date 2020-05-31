@@ -41,25 +41,16 @@ const testPlaylist: AudioPlayableItem[] = [
   },
 ];
 
-function Home({navigation}: {navigation: any}) {
+const HomeScreen = ({navigation}: {navigation: any}) => {
   return (
     <View>
       <Button
         title="player"
-        onPress={() => navigation.navigate('audio-player', {playlist:testPlaylist})}
+        onPress={() => navigation.navigate('player', {playlist: testPlaylist})}
         type="clear"
       />
     </View>
   );
-}
-
-const Stack = createStackNavigator();
-
-export default (props: any) => {
-  return (
-    <Stack.Navigator headerMode="none">
-      <Stack.Screen name="home" component={Home} />
-      <Stack.Screen name="audio-player" component={AudioPlayerNavigator} />
-    </Stack.Navigator>
-  );
 };
+
+export default HomeScreen;

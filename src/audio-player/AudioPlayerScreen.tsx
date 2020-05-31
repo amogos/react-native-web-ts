@@ -7,7 +7,7 @@ import {
   Image,
   TouchableHighlight,
 } from 'react-native';
-import {Slider, Text} from 'react-native-elements';
+import {Slider, Text, Button} from 'react-native-elements';
 
 import AudioPlaylistController from './AudioPlayerPlaylistController';
 import {AudioPlayableItem} from './AudioPlayer';
@@ -17,9 +17,9 @@ const backwardButtonImage = require('./assets/backward.jpg');
 const playButtonImage = require('./assets/play.jpg');
 const pauseButtonImage = require('./assets/pause.jpg');
 
-
 export default (props: any) => {
-  const {playlist} = props.route.params;
+  const {route, navigation} = props;
+  const {playlist} = route.params;
 
   if (!playlist) {
     return <Text>ERROR: No playlist provided.</Text>;
@@ -90,13 +90,16 @@ export default (props: any) => {
 
   const Header = () => {
     return (
-      <Text
-        style={{
-          textAlign: 'center',
-          fontFamily: 'sans-serif',
-        }}>
-        {title}
-      </Text>
+      <View>
+        <Button onPress={() => navigation.goBack()} title="Close" />
+        <Text
+          style={{
+            textAlign: 'center',
+            fontFamily: 'sans-serif',
+          }}>
+          {title}
+        </Text>
+      </View>
     );
   };
 
@@ -148,4 +151,4 @@ const styles = StyleSheet.create({
   thumbstyle: {
     backgroundColor: 'transparent',
   },
-}); 
+});

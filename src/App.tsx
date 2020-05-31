@@ -13,6 +13,7 @@ import SearchScreen from './screens/SearchScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ErrorScreen from './screens/ErrorScreen';
 import LoadingScreen from './screens/LoadingScreen';
+import AudioPlayerNavigator from './audio-player/AudioPlayerNavigator';
 
 function withEnvironment(WrappedComponent: any) {
   return class extends React.Component<any, any> {
@@ -37,10 +38,10 @@ function Profile() {
 
 const Tab = createBottomTabNavigator();
 
-function Home() {
+function HomeTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="home"
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let icon;
@@ -78,9 +79,14 @@ function Home() {
   );
 }
 
+const RootStack = createStackNavigator();
+
 export default () => (
   <NavigationContainer
     linking={{enabled: true, prefixes: ['https://myapp.com', 'myapp://']}}>
-    <Home />
+    <RootStack.Navigator headerMode="none" mode="modal" initialRouteName="home">
+      <RootStack.Screen name="home" component={HomeTabs} />
+      <Stack.Screen name="player" component={AudioPlayerNavigator} />
+    </RootStack.Navigator>
   </NavigationContainer>
 );
