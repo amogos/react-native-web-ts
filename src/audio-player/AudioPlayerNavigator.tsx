@@ -1,31 +1,28 @@
 import * as React from 'react';
-import {View, Text} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AudioPlayerScreen from './AudioPlayerScreen';
+import AudioPlayerHeader from './AudioPlayerHeader';
 
-const Tab = createBottomTabNavigator();
-
-const AudioPlayerSpeedScreen = () => {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Speed Screen</Text>
-    </View>
-  );
-};
-const AudioPlayerChaptersScreen = () => {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Chapters Screen</Text>
-    </View>
-  );
+const AudioPlayerSpeedScreen = (props: any) => {
+  const options = {
+    title: 'Speed',
+  };
+  return <AudioPlayerHeader {...props} options={options} />;
 };
 
-const AudioPlayerClipsScreen = () => {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Clips Screen</Text>
-    </View>
-  );
+const AudioPlayerChaptersScreen = (props: any) => {
+  const options = {
+    title: 'Chapters',
+  };
+  return <AudioPlayerHeader {...props} options={options} />;
+};
+
+const AudioPlayerClipsScreen = (props: any) => {
+  const options = {
+    title: 'Clips',
+  };
+  return <AudioPlayerHeader {...props} options={options} />;
 };
 
 function withProps(WrappedComponent: any, props: any) {
@@ -36,6 +33,8 @@ function withProps(WrappedComponent: any, props: any) {
   };
 }
 
+const Tab = createBottomTabNavigator();
+
 export default (props: any) => {
   return (
     <Tab.Navigator initialRouteName="player">
@@ -43,9 +42,18 @@ export default (props: any) => {
         name="player"
         component={withProps(AudioPlayerScreen, props)}
       />
-      <Tab.Screen name="speed" component={AudioPlayerSpeedScreen} />
-      <Tab.Screen name="chapters" component={AudioPlayerChaptersScreen} />
-      <Tab.Screen name="clips" component={AudioPlayerClipsScreen} />
+      <Tab.Screen
+        name="speed"
+        component={withProps(AudioPlayerSpeedScreen, props)}
+      />
+      <Tab.Screen
+        name="chapters"
+        component={withProps(AudioPlayerChaptersScreen, props)}
+      />
+      <Tab.Screen
+        name="clips"
+        component={withProps(AudioPlayerClipsScreen, props)}
+      />
     </Tab.Navigator>
   );
 };

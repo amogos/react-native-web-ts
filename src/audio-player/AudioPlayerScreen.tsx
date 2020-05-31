@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   View,
-  ActivityIndicator,
   SafeAreaView,
   TouchableHighlight,
   Image,
@@ -11,12 +10,12 @@ import {Slider, Text, Button} from 'react-native-elements';
 
 import AudioPlaylistController from './AudioPlayerPlaylistController';
 import {AudioPlayableItem} from './AudioPlayer';
+import AudioPlayerHeader from './AudioPlayerHeader';
 
 const forwardButtonImage = require('./assets/forward.jpg');
 const backwardButtonImage = require('./assets/backward.jpg');
 const playButtonImage = require('./assets/play.jpg');
 const pauseButtonImage = require('./assets/pause.jpg');
-const closeButtonImage = require('./assets/close.jpg');
 
 export default (props: any) => {
   const {route, navigation} = props;
@@ -89,22 +88,14 @@ export default (props: any) => {
     );
   };
 
+  const headerOptions = {
+    title,
+  };
+
   return (
     <SafeAreaView style={{backgroundColor: '#ffffff'}}>
-      <TouchableHighlight onPress={() => navigation.goBack()}>
-        <Image
-          source={closeButtonImage}
-          style={{width: 30, height: 30, margin: 0, padding: 0}}
-        />
-      </TouchableHighlight>
+      <AudioPlayerHeader {...props} options={headerOptions} />
       <View style={styles.container}>
-        <Text
-          style={{
-            textAlign: 'center',
-            fontFamily: 'sans-serif',
-          }}>
-          {title}
-        </Text>
         <Image
           style={{
             width: '85%',
