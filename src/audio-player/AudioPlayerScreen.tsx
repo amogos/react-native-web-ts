@@ -93,7 +93,7 @@ export default (props: any) => {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: '#ffffff'}}>
+    <SafeAreaView style={{backgroundColor: '#f0ffff'}}>
       <AudioPlayerHeader {...props} options={headerOptions} />
       <View style={styles.container}>
         <Image

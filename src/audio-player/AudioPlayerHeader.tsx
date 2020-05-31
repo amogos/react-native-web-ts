@@ -20,12 +20,14 @@ const AudioPlayerHeader = (props: any) => {
   };
 
   return (
-    <SafeAreaView style={{flexDirection:'row'}}>
+    <SafeAreaView style={{flexDirection:'row', width:'100%'}}>
         <TouchableHighlight onPress={close}>
             <Image source={closeButtonImage} style={{width: 30, height: 30}}/>
         </TouchableHighlight>
-    <Text style={{
+        <Text style={{
             textAlign: 'center',
+            right: '40%',
+            position:'absolute'
           }}>{title}</Text>
     </SafeAreaView>
   );
