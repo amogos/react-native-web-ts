@@ -39,7 +39,7 @@ const testAlbum: AudioPlayableAlbum = {
       duration: 336,
     },
   ],
-  cover: {
+  meta: {
     image:
       'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
     title: 'Tom Sawyers Abenteuer',
@@ -58,7 +58,7 @@ const AlbumThumbnail = ({
       onPress={() => navigation.navigate('player', {album: testAlbum})}>
       <Image
         borderRadius={10}
-        source={{uri: testAlbum.cover.image}}
+        source={{uri: testAlbum.meta.image}}
         style={{width: 120, height: 120}}
       />
     </TouchableHighlight>

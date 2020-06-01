@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  TouchableHighlight,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-} from 'react-native';
-import {Text} from 'react-native-elements';
+import {TouchableHighlight, Image, SafeAreaView} from 'react-native';
 import AudioPlaylistController from './AudioPlayerPlaylistController';
-
-const closeButtonImage = require('./assets/close.jpg');
+import {closeButtonImage} from './AudioPlayerIcons';
 
 export interface AudioPlayerHeaderOptions {
   title: string;

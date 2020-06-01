@@ -9,13 +9,14 @@ import {
 import {Slider, Text, Button} from 'react-native-elements';
 
 import AudioPlaylistController from './AudioPlayerPlaylistController';
-import {AudioPlayableItem, AudioPlayableAlbum} from './AudioPlayer';
+import {AudioPlayableTrack, AudioPlayableAlbum} from './AudioPlayer';
 import AudioPlayerHeader from './AudioPlayerHeader';
-
-const forwardButtonImage = require('./assets/forward.jpg');
-const backwardButtonImage = require('./assets/backward.jpg');
-const playButtonImage = require('./assets/play.jpg');
-const pauseButtonImage = require('./assets/pause.jpg');
+import {
+  forwardButtonImage,
+  backwardButtonImage,
+  playButtonImage,
+  pauseButtonImage,
+} from './AudioPlayerIcons';
 
 interface Props {
   route: any;
@@ -49,7 +50,7 @@ export default (props: Props) => {
     reset();
   }, []);
 
-  const trackChanged = (track: AudioPlayableItem | null) => {
+  const trackChanged = (track: AudioPlayableTrack | null) => {
     if (track) {
       setDuration(track.duration);
       setPosition(0);
@@ -98,7 +99,7 @@ export default (props: Props) => {
     <SafeAreaView style={{backgroundColor: '#f0ffff'}}>
       <AudioPlayerHeader {...props} />
       <View style={styles.container}>
-      <Text style={{marginBottom:25}}>{title}</Text>
+        <Text style={{marginBottom: 25}}>{title}</Text>
         <Image
           style={{
             width: 160,

@@ -5,7 +5,7 @@ import AudioPlayerScreen from './AudioPlayerScreen';
 import AudioPlayerHeader from './AudioPlayerHeader';
 
 const AudioPlayerSpeedScreen = (props: any) => {
-  return <AudioPlayerHeader {...props}  />;
+  return <AudioPlayerHeader {...props} />;
 };
 
 const AudioPlayerChaptersScreen = (props: any) => {

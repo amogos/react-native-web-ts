@@ -1,17 +1,16 @@
 import TrackPlayer, {Track} from 'react-native-track-player';
 
-
 export interface AudioPlayableAlbumMeta {
-  title:string|null;
-  image:string;
+  title: string;
+  image: string;
 }
 
 export interface AudioPlayableAlbum {
-  tracks: AudioPlayableItem[];
-  cover: AudioPlayableAlbumMeta;
+  tracks: AudioPlayableTrack[];
+  meta: AudioPlayableAlbumMeta;
 }
 
-export interface AudioPlayableItem extends Track {
+export interface AudioPlayableTrack extends Track {
   title: string;
   artwork: string;
   artist: string;
@@ -58,7 +57,7 @@ class AudioPlayer {
     TrackPlayer.updateOptions(options);
   }
 
-  private createTrack = (item: AudioPlayableItem): Track => {
+  private createTrack = (item: AudioPlayableTrack): Track => {
     const {url, title, id, artwork, artist} = item;
     const track = {
       id,
@@ -125,7 +124,7 @@ class AudioPlayer {
   };
 
   prependToQueue = async (
-    playables: AudioPlayableItem[] | AudioPlayableItem,
+    playables: AudioPlayableTrack[] | AudioPlayableTrack,
   ) => {
     const audioFiles = Array.isArray(playables)
       ? playables.map(item => this.createTrack(item))
@@ -135,7 +134,7 @@ class AudioPlayer {
     TrackPlayer.add(audioFiles, currentTrackId);
   };
 
-  appendToQueue = (playables: AudioPlayableItem[] | AudioPlayableItem) => {
+  appendToQueue = (playables: AudioPlayableTrack[] | AudioPlayableTrack) => {
     const audioFiles = Array.isArray(playables)
       ? playables.map(item => this.createTrack(item))
       : this.createTrack(playables);
