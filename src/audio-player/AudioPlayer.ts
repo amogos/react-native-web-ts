@@ -1,5 +1,16 @@
 import TrackPlayer, {Track} from 'react-native-track-player';
 
+
+export interface AudioPlayableAlbumMeta {
+  title:string|null;
+  image:string;
+}
+
+export interface AudioPlayableAlbum {
+  tracks: AudioPlayableItem[];
+  cover: AudioPlayableAlbumMeta;
+}
+
 export interface AudioPlayableItem extends Track {
   title: string;
   artwork: string;

@@ -5,24 +5,15 @@ import AudioPlayerScreen from './AudioPlayerScreen';
 import AudioPlayerHeader from './AudioPlayerHeader';
 
 const AudioPlayerSpeedScreen = (props: any) => {
-  const options = {
-    title: 'Speed',
-  };
-  return <AudioPlayerHeader {...props} options={options} />;
+  return <AudioPlayerHeader {...props}  />;
 };
 
 const AudioPlayerChaptersScreen = (props: any) => {
-  const options = {
-    title: 'Chapters',
-  };
-  return <AudioPlayerHeader {...props} options={options} />;
+  return <AudioPlayerHeader {...props} />;
 };
 
 const AudioPlayerClipsScreen = (props: any) => {
-  const options = {
-    title: 'Clips',
-  };
-  return <AudioPlayerHeader {...props} options={options} />;
+  return <AudioPlayerHeader {...props} />;
 };
 
 function withProps(WrappedComponent: any, props: any) {

@@ -9,7 +9,7 @@ import {
 import {Slider, Text, Button} from 'react-native-elements';
 
 import AudioPlaylistController from './AudioPlayerPlaylistController';
-import {AudioPlayableItem} from './AudioPlayer';
+import {AudioPlayableItem, AudioPlayableAlbum} from './AudioPlayer';
 import AudioPlayerHeader from './AudioPlayerHeader';
 
 const forwardButtonImage = require('./assets/forward.jpg');
@@ -17,12 +17,18 @@ const backwardButtonImage = require('./assets/backward.jpg');
 const playButtonImage = require('./assets/play.jpg');
 const pauseButtonImage = require('./assets/pause.jpg');
 
-export default (props: any) => {
-  const {route, navigation} = props;
-  const {playlist} = route.params;
+interface Props {
+  route: any;
+  navigation: any;
+  album: AudioPlayableAlbum;
+}
 
-  if (!playlist) {
-    return <Text>ERROR: No playlist provided.</Text>;
+export default (props: Props) => {
+  const {route, navigation} = props;
+  const {album} = route.params;
+
+  if (!album) {
+    return <Text>ERROR: No valid album provided.</Text>;
   }
 
   const [position, setPosition] = useState(0);
@@ -37,7 +43,7 @@ export default (props: any) => {
   useEffect(() => {
     async function reset() {
       AudioPlaylistController.clearPlaylist();
-      await AudioPlaylistController.addToPlaylist(...playlist);
+      await AudioPlaylistController.addToPlaylist(...album.tracks);
       AudioPlaylistController.addTrackChangeListener(trackChanged);
     }
     reset();
@@ -88,18 +94,15 @@ export default (props: any) => {
     );
   };
 
-  const headerOptions = {
-    title,
-  };
-
   return (
     <SafeAreaView style={{backgroundColor: '#f0ffff'}}>
-      <AudioPlayerHeader {...props} options={headerOptions} />
+      <AudioPlayerHeader {...props} />
       <View style={styles.container}>
+      <Text style={{marginBottom:25}}>{title}</Text>
         <Image
           style={{
-            width: '85%',
-            height: '50%',
+            width: 160,
+            height: 160,
             marginBottom: '5%',
           }}
           source={{
