@@ -1,11 +1,10 @@
 import React from 'react';
+import RelayEnvironment from './RelayEnvironment';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {withNavigation} from 'react-navigation';
-import {Image} from 'react-native-elements';
-
-import RelayEnvironment from './RelayEnvironment';
+import {HomeTabIcon, SearchTabIcon, ScanTabIcon, ProfileTabIcon} from './icons';
 
 import {
   HomeScreen,
@@ -50,19 +49,15 @@ function HomeTabs() {
           let icon;
 
           if (route.name === 'home') {
-            icon = focused
-              ? require('./icons/home.jpg')
-              : require('./icons/home.jpg');
+            icon = focused ? <HomeTabIcon /> : <HomeTabIcon />;
+          } else if (route.name === 'scan') {
+            icon = focused ? <ScanTabIcon /> : <ScanTabIcon />;
           } else if (route.name === 'search') {
-            icon = focused
-              ? require('./icons/search.jpg')
-              : require('./icons/search.jpg');
+            icon = focused ? <SearchTabIcon /> : <SearchTabIcon />;
           } else if (route.name === 'profile') {
-            icon = focused
-              ? require('./icons/profile.jpg')
-              : require('./icons/profile.jpg');
+            icon = focused ? <ProfileTabIcon /> : <ProfileTabIcon />;
           }
-          return <Image source={icon} style={{width: 32, height: 32}} />;
+          return icon;
         },
       })}
       tabBarOptions={{
