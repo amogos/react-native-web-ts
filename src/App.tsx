@@ -27,17 +27,6 @@ function withEnvironment(WrappedComponent: any) {
   };
 }
 
-const Stack = createStackNavigator();
-
-function Profile() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Feed" component={ErrorScreen} />
-      <Stack.Screen name="Notifications" component={LoadingScreen} />
-    </Stack.Navigator>
-  );
-}
-
 const Tab = createBottomTabNavigator();
 
 function HomeTabs() {
@@ -88,7 +77,7 @@ export default () => (
     linking={{enabled: true, prefixes: ['https://myapp.com', 'myapp://']}}>
     <RootStack.Navigator headerMode="none" mode="modal" initialRouteName="home">
       <RootStack.Screen name="home" component={HomeTabs} />
-      <Stack.Screen name="player" component={AudioPlayerNavigator} />
+      <RootStack.Screen name="player" component={AudioPlayerNavigator} />
     </RootStack.Navigator>
   </NavigationContainer>
 );
