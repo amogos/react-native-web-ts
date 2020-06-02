@@ -1,20 +1,26 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ForwardButtonIcon = () => <Icon name="forward" size={30} />;
-const BackwardButtonIcon = () => <Icon name="backward" size={30} />;
-const JumpForwardButtonIcon = () => <Icon name="fast-forward" size={30} />;
-const JumpBackwardButtonIcon = () => <Icon name="fast-backward" size={30} />;
+//  player buttons
+const ForwardButtonIcon = () => <Icon name="forward" size={20} />;
+const BackwardButtonIcon = () => <Icon name="backward" size={20} />;
+const JumpForwardButtonIcon = () => <Icon name="rotate-right" size={20} />;
+const JumpBackwardButtonIcon = () => <Icon name="rotate-left" size={20} />;
+const PlayButtonIcon = () => <Icon name="play-circle" size={20} />;
+const PauseButtonIcon = () => <Icon name="pause-circle" size={20} />;
+const CloseButtonIcon = () => <Icon name="chevron-down" size={20} />;
 
-const PlayButtonIcon = () => <Icon name="play-circle" size={30} />;
-const PauseButtonIcon = () => <Icon name="pause-circle" size={30} />;
-
-const CloseButtonIcon = () => <Icon name="caret-down" size={30} />;
+//  navigation tabs
+const QRCodeTabIcon = () => <Icon name="qrcode" size={20} />;
 
 export {
+  //  player buttons
   ForwardButtonIcon,
   BackwardButtonIcon,
   PlayButtonIcon,
   PauseButtonIcon,
   CloseButtonIcon,
+  JumpForwardButtonIcon,
+  JumpBackwardButtonIcon,
+  //  navigation tabs
 };

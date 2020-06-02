@@ -1,18 +1,21 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {withNavigation} from 'react-navigation';
 import {Image} from 'react-native-elements';
 
 import RelayEnvironment from './RelayEnvironment';
 
-import HomeScreen from './screens/HomeScreen';
-import SearchScreen from './screens/SearchScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import ErrorScreen from './screens/ErrorScreen';
-import LoadingScreen from './screens/LoadingScreen';
+import {
+  HomeScreen,
+  SearchScreen,
+  ProfileScreen,
+  ErrorScreen,
+  LoadingScreen,
+  QRScreen,
+} from './screens';
+
 import AudioPlayerNavigator from './audio-player/AudioPlayerNavigator';
 
 function withEnvironment(WrappedComponent: any) {
@@ -69,6 +72,10 @@ function HomeTabs() {
       <Tab.Screen
         name="home"
         component={withEnvironment(withNavigation(HomeScreen))}
+      />
+      <Tab.Screen
+        name="scan"
+        component={withEnvironment(withNavigation(QRScreen))}
       />
       <Tab.Screen
         name="search"

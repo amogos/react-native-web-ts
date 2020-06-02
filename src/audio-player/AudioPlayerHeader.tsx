@@ -18,7 +18,7 @@ const AudioPlayerHeader = (props: any) => {
   return (
     <SafeAreaView style={{flexDirection: 'row', width: '100%'}}>
       <TouchableHighlight onPress={close}>
-        <CloseButtonIcon/>
+        <CloseButtonIcon />
       </TouchableHighlight>
     </SafeAreaView>
   );

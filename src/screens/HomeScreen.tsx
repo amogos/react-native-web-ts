@@ -12,7 +12,7 @@ interface Props {
 const testAlbum: AudioPlayableAlbum = {
   tracks: [
     {
-      title: 'Tom, Der Lausbub',
+      title: 'Kapitel 1 Tom, Der Lausbub',
       artwork:
       'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
       id: 'id02',
@@ -21,7 +21,7 @@ const testAlbum: AudioPlayableAlbum = {
       duration: 206,
     },
     {
-      title: 'Wer Streicht Tante Pollys Zaun',
+      title: 'Kapitel 2 Wer Streicht Tante Pollys Zaun',
       artwork:
       'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
       id: 'id01',
@@ -30,7 +30,7 @@ const testAlbum: AudioPlayableAlbum = {
       duration: 278,
     },
     {
-      title: 'Tom Trifft Huckleberry Und Lernt Becky Näher Kennen',
+      title: 'Kapitel 3 Tom Trifft Huckleberry Und Lernt Becky Näher Kennen',
       artwork:
       'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
       id: 'id03',

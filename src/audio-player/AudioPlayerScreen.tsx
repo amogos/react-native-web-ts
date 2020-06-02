@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   Image,
 } from 'react-native';
-import {Slider, Text, Button} from 'react-native-elements';
+import {Slider, Text} from 'react-native-elements';
 
 import AudioPlaylistController from './AudioPlayerPlaylistController';
 import {AudioPlayableTrack, AudioPlayableAlbum} from './AudioPlayer';
@@ -16,6 +16,8 @@ import {
   ForwardButtonIcon,
   PlayButtonIcon,
   PauseButtonIcon,
+  JumpBackwardButtonIcon,
+  JumpForwardButtonIcon,
 } from './AudioPlayerIcons';
 
 interface Props {
@@ -59,6 +61,10 @@ export default (props: Props) => {
     }
   };
 
+  const jumpBackward = async () => {};
+
+  const jumpForward = async () => {};
+
   const togglePlay = async () => {
     await AudioPlaylistController.togglePlay();
     setIsPlaying(!isPlaying);
@@ -79,6 +85,9 @@ export default (props: Props) => {
   const AudioControls = () => {
     return (
       <View style={styles.controls}>
+        <TouchableHighlight onPress={jumpBackward}>
+          <JumpBackwardButtonIcon />
+        </TouchableHighlight>
         <TouchableHighlight onPress={playPreviousTrack}>
           <BackwardButtonIcon />
         </TouchableHighlight>
@@ -87,6 +96,9 @@ export default (props: Props) => {
         </TouchableHighlight>
         <TouchableHighlight onPress={playNextTrack}>
           <ForwardButtonIcon />
+        </TouchableHighlight>
+        <TouchableHighlight onPress={jumpForward}>
+          <JumpForwardButtonIcon />
         </TouchableHighlight>
       </View>
     );
