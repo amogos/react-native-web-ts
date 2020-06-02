@@ -1,11 +1,38 @@
 import * as React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, View, Text, TouchableHighlight} from 'react-native';
+import {Divider} from 'react-native-elements';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AudioPlayerScreen from './AudioPlayerScreen';
 import AudioPlayerHeader from './AudioPlayerHeader';
+import AudioPlayerPLaylistController from './AudioPlayerPlaylistController';
 
 const AudioPlayerSpeedScreen = (props: any) => {
-  return <AudioPlayerHeader {...props} />;
+  let SpeedItem = ({speed}: {speed: any}) => {
+    return (
+      <SafeAreaView>
+        <TouchableHighlight
+          onPress={() => AudioPlayerPLaylistController.onSpeedChanged(speed)}>
+          <Text style={{fontSize: 20, textAlign: 'center'}}>{speed}</Text>
+        </TouchableHighlight>
+        <Divider />
+      </SafeAreaView>
+    );
+  };
+
+  const speeds = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5];
+
+  return (
+    <SafeAreaView>
+      <AudioPlayerHeader {...props} />
+      <SafeAreaView style={{marginTop: 20}}>
+        <Divider />
+        {speeds.map((speed, index) => (
+          <SpeedItem key={index} speed={speed} />
+        ))}
+        <Divider />
+      </SafeAreaView>
+    </SafeAreaView>
+  );
 };
 
 const AudioPlayerChaptersScreen = (props: any) => {

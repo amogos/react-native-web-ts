@@ -20,6 +20,14 @@ class AudioPlayerPlaylistController {
     AudioPlayer.addTrackChangeListener(this.onTrackChange)
   }
 
+  onSpeedChanged =  (speed:number) => {
+    AudioPlayer.getInstance().setRate(speed);
+  }
+
+  onTrackSelected = async (index:number) => {
+    
+  }
+
   addTrackChangeListener = (callback : (track:AudioPlayableTrack|null) => void) => {
     this.trackChanged = callback;
   }

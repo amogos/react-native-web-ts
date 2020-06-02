@@ -75,6 +75,10 @@ class AudioPlayer {
     TrackPlayer.addEventListener('playback-track-changed', callback);
   };
 
+  setRate = (rate: number) => {
+    TrackPlayer.setRate(rate);
+  };
+
   clear = () => {
     TrackPlayer.reset();
   };

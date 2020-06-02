@@ -3,15 +3,10 @@ import {TouchableHighlight, Image, SafeAreaView} from 'react-native';
 import AudioPlaylistController from './AudioPlayerPlaylistController';
 import {CloseButtonIcon} from './AudioPlayerIcons';
 
-export interface AudioPlayerHeaderOptions {
-  title: string;
-}
-
 const AudioPlayerHeader = (props: any) => {
   const {navigation} = props;
 
   const close = () => {
-    AudioPlaylistController.pause();
     navigation.goBack();
   };
 
