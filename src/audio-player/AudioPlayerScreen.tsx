@@ -12,10 +12,10 @@ import AudioPlaylistController from './AudioPlayerPlaylistController';
 import {AudioPlayableTrack, AudioPlayableAlbum} from './AudioPlayer';
 import AudioPlayerHeader from './AudioPlayerHeader';
 import {
-  forwardButtonImage,
-  backwardButtonImage,
-  playButtonImage,
-  pauseButtonImage,
+  BackwardButtonIcon,
+  ForwardButtonIcon,
+  PlayButtonIcon,
+  PauseButtonIcon,
 } from './AudioPlayerIcons';
 
 interface Props {
@@ -80,16 +80,13 @@ export default (props: Props) => {
     return (
       <View style={styles.controls}>
         <TouchableHighlight onPress={playPreviousTrack}>
-          <Image source={backwardButtonImage} style={{width: 50, height: 50}} />
+          <BackwardButtonIcon />
         </TouchableHighlight>
         <TouchableHighlight onPress={togglePlay}>
-          <Image
-            source={isPlaying ? pauseButtonImage : playButtonImage}
-            style={{width: 50, height: 50}}
-          />
+          {isPlaying ? <PauseButtonIcon /> : <PlayButtonIcon />}
         </TouchableHighlight>
         <TouchableHighlight onPress={playNextTrack}>
-          <Image source={forwardButtonImage} style={{width: 50, height: 50}} />
+          <ForwardButtonIcon />
         </TouchableHighlight>
       </View>
     );
