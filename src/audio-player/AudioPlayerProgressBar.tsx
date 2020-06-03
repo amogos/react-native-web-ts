@@ -20,12 +20,20 @@ class AudioPlayerProgressBar extends TrackPlayer.ProgressComponent<Props, {}> {
     const sHours = hours < 10 ? `0${hours}` : `${hours}`;
     const sMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
     const sSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    if (hours === 0) {
+      return `${sMinutes}:${sSeconds}`;
+    }
     return `${sHours}:${sMinutes}:${sSeconds}`;
   };
 
   render() {
     return (
-      <View>
+      <View
+        style={{
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Text>{this.convertHMS(this.state.position)}</Text>
         <Slider
           style={{width: '85%', height: '1%'}}
@@ -45,6 +53,5 @@ class AudioPlayerProgressBar extends TrackPlayer.ProgressComponent<Props, {}> {
     );
   }
 }
-
 
 export default AudioPlayerProgressBar;
