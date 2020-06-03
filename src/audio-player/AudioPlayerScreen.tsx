@@ -61,7 +61,7 @@ export default (props: Props) => {
       setPosition(0);
       setCover(track.artwork);
       setTitle(track.title);
-      setSubtitle(track.subtitle)
+      setSubtitle(track.subtitle);
     }
   };
 
@@ -130,7 +130,6 @@ export default (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
   },
