@@ -7,6 +7,7 @@ const AudioPlayerHeader = (props: any) => {
   const {navigation} = props;
 
   const close = () => {
+    AudioPlaylistController.pause();
     navigation.goBack();
   };
 
