@@ -1,18 +1,22 @@
 import React from 'react';
-import {View} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import {Slider, Text} from 'react-native-elements';
 import TrackPlayer from 'react-native-track-player';
-import AudioPlaylistController from './AudioPlayerPlaylistController';
+import audioPlayerPlaylistController from './AudioPlayerPlaylistController';
 
 interface Props {
   duration: number;
 }
 
-class AudioPlayerProgressBar extends TrackPlayer.ProgressComponent<Props, {}> {
-  slideTrack = async (position: number) => {
-    await AudioPlaylistController.seekTo(position);
-  };
+interface State {
+  isSeeking: boolean;
+  seek: number;
+}
 
+class AudioPlayerProgressBar extends TrackPlayer.ProgressComponent<
+  Props,
+  State
+> {
   convertHMS = (sec: number) => {
     const hours = Math.floor(sec / 3600);
     const minutes = Math.floor((sec - hours * 3600) / 60);
@@ -28,15 +32,17 @@ class AudioPlayerProgressBar extends TrackPlayer.ProgressComponent<Props, {}> {
 
   render() {
     return (
-      <View
+      <SafeAreaView
         style={{
-          flexDirection: 'column',
+          flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Text>{this.convertHMS(this.state.position)}</Text>
+        <Text style={{marginRight: 10}}>
+          {this.convertHMS(this.state.position)}
+        </Text>
         <Slider
-          style={{width: '85%', height: '1%'}}
+          style={{width: 120, height: 2}}
           maximumValue={this.props.duration}
           minimumValue={0}
           minimumTrackTintColor="#307ecc"
@@ -45,11 +51,18 @@ class AudioPlayerProgressBar extends TrackPlayer.ProgressComponent<Props, {}> {
           thumbStyle={{
             backgroundColor: 'transparent',
           }}
-          onValueChange={value => this.setState({position: value})}
-          onSlidingComplete={this.slideTrack}
+          onValueChange={value => {
+            this.setState({isSeeking: true, seek: value});
+          }}
+          onSlidingComplete={value => {
+            audioPlayerPlaylistController.seekTo(this.state.seek);
+            this.setState({isSeeking: false});
+          }}
         />
-        <Text>{this.convertHMS(this.props.duration)}</Text>
-      </View>
+        <Text style={{marginLeft: 10}}>
+          {this.convertHMS(this.props.duration)}
+        </Text>
+      </SafeAreaView>
     );
   }
 }

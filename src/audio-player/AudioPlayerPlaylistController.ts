@@ -63,6 +63,10 @@ class AudioPlayerPlaylistController {
     await AudioPlayer.getInstance()?.pause();
   }
 
+  play = async () => {
+    await AudioPlayer.getInstance()?.play();
+  }
+
   seekTo = async (position:number) => {
     const audioPlayer = AudioPlayer.getInstance();
     const isPlaying = await audioPlayer?.isPlaying();
