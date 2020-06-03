@@ -44,6 +44,7 @@ export default (props: Props) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const [title, setTitle] = useState('');
+  const [subtitle, setSubtitle] = useState('');
 
   useEffect(() => {
     async function reset() {
@@ -60,6 +61,7 @@ export default (props: Props) => {
       setPosition(0);
       setCover(track.artwork);
       setTitle(track.title);
+      setSubtitle(track.subtitle)
     }
   };
 
@@ -107,6 +109,7 @@ export default (props: Props) => {
       <AudioPlayerHeader {...props} />
       <View style={styles.container}>
         <Text style={{marginBottom: 25}}>{title}</Text>
+        <Text style={{marginBottom: 25}}>{subtitle}</Text>
         <Image
           style={{
             width: 160,

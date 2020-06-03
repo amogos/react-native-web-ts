@@ -12,6 +12,7 @@ export interface AudioPlayableAlbum {
 
 export interface AudioPlayableTrack extends Track {
   title: string;
+  subtitle: string;
   artwork: string;
   artist: string;
   duration: number;

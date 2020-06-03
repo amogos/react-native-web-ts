@@ -12,27 +12,30 @@ interface Props {
 const testAlbum: AudioPlayableAlbum = {
   tracks: [
     {
-      title: 'Kapitel 1 Tom, Der Lausbub',
+      title: 'Kapitel 1',
+      subtitle: 'Tom, Der Lausbub',
       artwork:
-      'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
+        'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
       id: 'id02',
       url: require('../audio-player/assets/02TomDerLausbub.mp3'),
       artist: 'Mark Twain',
       duration: 206,
     },
     {
-      title: 'Kapitel 2 Wer Streicht Tante Pollys Zaun',
+      title: 'Kapitel 2 ',
+      subtitle: 'Wer Streicht Tante Pollys Zaun',
       artwork:
-      'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
+        'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
       id: 'id01',
       url: require('../audio-player/assets/03WerStreichtTantePollysZaun.mp3'),
       artist: 'Mark Twain',
       duration: 278,
     },
     {
-      title: 'Kapitel 3 Tom Trifft Huckleberry Und Lernt Becky Näher Kennen',
+      title: 'Kapitel 3',
+      subtitle: 'Tom Trifft Huckleberry Und Lernt Becky Näher Kennen',
       artwork:
-      'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
+        'https://images-na.ssl-images-amazon.com/images/I/51OKaRV52sL._SX354_BO1,204,203,200_.jpg',
       id: 'id03',
       url: require('../audio-player/assets/05TomTrifftHuckleberryUndLerntBeckyNäherKennen.mp3'),
       artist: 'Mark Twain',
@@ -67,9 +70,13 @@ const AlbumThumbnail = ({
 
 const HomeScreen = ({navigation}: {navigation: any}) => {
   return (
-    <SafeAreaView style={{backgroundColor:'#F2F4F4', height:'100%'}}>
-      <Text style={{fontSize:24, fontWeight:'bold'}}>Good afternoon, Ana.</Text>
-      <Text style={{fontSize:16, fontWeight:'bold', marginTop:20}}>Continue Listening to Your Library</Text>
+    <SafeAreaView style={{backgroundColor: '#F2F4F4', height: '100%'}}>
+      <Text style={{fontSize: 24, fontWeight: 'bold'}}>
+        Good afternoon, Ana.
+      </Text>
+      <Text style={{fontSize: 16, fontWeight: 'bold', marginTop: 20}}>
+        Continue Listening to Your Library
+      </Text>
       <View
         style={{
           flexDirection: 'row',
@@ -81,7 +88,9 @@ const HomeScreen = ({navigation}: {navigation: any}) => {
         <AlbumThumbnail navigation={navigation} album={testAlbum} />
       </View>
 
-      <Text style={{fontSize:16, fontWeight:'bold', marginTop:20}}>Your Recent Albums</Text>
+      <Text style={{fontSize: 16, fontWeight: 'bold', marginTop: 20}}>
+        Your Recent Albums
+      </Text>
     </SafeAreaView>
   );
 };
