@@ -20,10 +20,46 @@ import {
   JumpForwardButtonIcon,
 } from './AudioPlayerIcons';
 
+import TrackPlayer from 'react-native-track-player';
+
 interface Props {
   route: any;
   navigation: any;
   album: AudioPlayableAlbum;
+}
+
+class AudioPlayerProgressBar extends TrackPlayer.ProgressComponent {
+  slideTrack = async (position: number) => {
+    await AudioPlaylistController.seekTo(position);
+  };
+  convertHMS = (sec: number) => {
+    const hours = Math.floor(sec / 3600);
+    const minutes = Math.floor((sec - hours * 3600) / 60);
+    const seconds = Math.floor(sec - hours * 3600 - minutes * 60);
+    const sHours = hours < 10 ? `0${hours}` : `${hours}`;
+    const sMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    const sSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    return `${sHours}:${sMinutes}:${sSeconds}`;
+  };
+
+  render() {
+    return (
+      <View>
+        <Text>{this.convertHMS(this.state.position)}</Text>
+        <Slider
+          style={{width: '85%', height: '1%'}}
+          maximumValue={this.state.duration}
+          minimumValue={0}
+          minimumTrackTintColor="#307ecc"
+          maximumTrackTintColor="#000000"
+          value={this.state.position}
+          thumbStyle={styles.thumbstyle}
+          onValueChange={value => this.setState({position: value})}
+          onSlidingComplete={this.slideTrack}
+        />
+      </View>
+    );
+  }
 }
 
 export default (props: Props) => {
@@ -68,10 +104,6 @@ export default (props: Props) => {
   const togglePlay = async () => {
     await AudioPlaylistController.togglePlay();
     setIsPlaying(!isPlaying);
-  };
-
-  const slideTrack = async (position: number) => {
-    await AudioPlaylistController.seekTo(position);
   };
 
   const playPreviousTrack = async () => {
@@ -119,17 +151,7 @@ export default (props: Props) => {
             uri: cover,
           }}
         />
-        <Slider
-          style={{width: '85%', height: '1%'}}
-          maximumValue={duration}
-          minimumValue={0}
-          minimumTrackTintColor="#307ecc"
-          maximumTrackTintColor="#000000"
-          value={position}
-          thumbStyle={styles.thumbstyle}
-          onValueChange={value => setPosition(value)}
-          onSlidingComplete={slideTrack}
-        />
+        <AudioPlayerProgressBar />
         <AudioControls />
       </View>
     </SafeAreaView>
