@@ -1,11 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-
 import {graphql, QueryRenderer} from 'react-relay';
-import {Image} from 'react-native-elements';
 
-import ErrorScreen from './ErrorScreen';
-import LoadingScreen from './LoadingScreen';
+import {ErrorScreen, LoadingScreen} from '.';
+import {HomeTabIcon} from '../icons';
 
 interface Props {
   environment: any;
@@ -26,11 +24,9 @@ export default (props: any) => {
       return <LoadingScreen navigation={navigation} />;
     }
 
-    const icon = require('../icons/home.jpg');
-
     return (
       <View style={styles.container}>
-        <Image source={icon} style={{width: 128, height: 128}} />
+        <HomeTabIcon />
       </View>
     );
   };

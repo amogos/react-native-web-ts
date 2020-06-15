@@ -1,18 +1,26 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {withNavigation} from 'react-navigation';
 import {Image} from 'react-native-elements';
 
 import RelayEnvironment from './RelayEnvironment';
 
-import HomeScreen from './screens/HomeScreen';
-import SearchScreen from './screens/SearchScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import ErrorScreen from './screens/ErrorScreen';
-import LoadingScreen from './screens/LoadingScreen';
+import {
+  HomeScreen,
+  SearchScreen,
+  ProfileScreen,
+  ErrorScreen,
+  LoadingScreen,
+} from './screens';
+
+import {
+  HomeTabIcon,
+  ProfileTabIcon,
+  SearchTabIcon,
+  UndefinedIcon,
+} from './icons';
 
 function withEnvironment(WrappedComponent: any) {
   return class extends React.Component<any, any> {
@@ -46,19 +54,13 @@ function Home() {
           let icon;
 
           if (route.name === 'home') {
-            icon = focused
-              ? require('./icons/home.jpg')
-              : require('./icons/home.jpg');
+            return focused ? <HomeTabIcon /> : <HomeTabIcon />;
           } else if (route.name === 'search') {
-            icon = focused
-              ? require('./icons/search.jpg')
-              : require('./icons/search.jpg');
+            return focused ? <SearchTabIcon /> : <SearchTabIcon />;
           } else if (route.name === 'profile') {
-            icon = focused
-              ? require('./icons/profile.jpg')
-              : require('./icons/profile.jpg');
+            return focused ? <ProfileTabIcon /> : <ProfileTabIcon />;
           }
-          return <Image source={icon} style={{width: 32, height: 32}} />;
+          return <UndefinedIcon />;
         },
       })}
       tabBarOptions={{

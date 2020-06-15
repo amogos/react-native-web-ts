@@ -4,9 +4,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SafeAreaView from 'react-native-safe-area-view';
 import {View, StyleSheet} from 'react-native';
 import {Button, Image, Text} from 'react-native-elements';
-import GroupsScreen from './GroupsScreen';
-import ShelvesScreen from './ShelvesScreen';
-import BookmarksScreen from './BookmarksScreen';
+import {GroupsScreen, ShelvesScreen, BookmarksScreen} from '.';
 
 function You({navigation}: {navigation: any}) {
   return (
