@@ -1,12 +1,10 @@
 import * as RNLocalize from 'react-native-localize';
 import en from './en';
-import fr from './fr';
 
-export const AvailableLanguageCodes = ['en', 'fr'];
+export const AvailableLanguageCodes = ['en'];
 
 export const AvailableLocalizations = {
   en,
-  fr,
 };
 
 export const GetLocalizedStrings = () => {
@@ -14,8 +12,7 @@ export const GetLocalizedStrings = () => {
   switch (languageCode) {
     case 'en':
       return AvailableLocalizations.en;
-    case 'fr':
-      return AvailableLocalizations.fr;
+
     default:
       return AvailableLocalizations.en;
   }

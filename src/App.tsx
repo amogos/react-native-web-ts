@@ -13,6 +13,8 @@ import {
   ProfileScreen,
   ErrorScreen,
   LoadingScreen,
+  ShelvesScreen,
+  NotificationsScreen,
 } from './screens';
 
 import {
@@ -20,6 +22,8 @@ import {
   ProfileTabIcon,
   SearchTabIcon,
   UndefinedIcon,
+  BookshelfTabIcon,
+  NotificationTabIcon,
 } from './icons';
 
 function withEnvironment(WrappedComponent: any) {
@@ -50,7 +54,7 @@ function Home() {
 
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="home"
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let icon;
@@ -59,6 +63,10 @@ function Home() {
             return focused ? <HomeTabIcon /> : <HomeTabIcon />;
           } else if (route.name === 'search') {
             return focused ? <SearchTabIcon /> : <SearchTabIcon />;
+          } else if (route.name === 'bookshelves') {
+            return focused ? <BookshelfTabIcon /> : <BookshelfTabIcon />;
+          } else if (route.name === 'notifications') {
+            return focused ? <NotificationTabIcon /> : <NotificationTabIcon />;
           } else if (route.name === 'profile') {
             return focused ? <ProfileTabIcon /> : <ProfileTabIcon />;
           }
@@ -68,16 +76,28 @@ function Home() {
       tabBarOptions={{
         activeTintColor: 'green',
         inactiveTintColor: 'gray',
+        showLabel: false,
       }}>
       <Tab.Screen
-        name={translations.id_home}
+        name="home"
         component={withEnvironment(withNavigation(HomeScreen))}
       />
       <Tab.Screen
-        name={translations.id_search}
+        name="search"
         component={withEnvironment(withNavigation(SearchScreen))}
       />
-      <Tab.Screen name={translations.id_profile} component={ProfileScreen} />
+      <Tab.Screen
+        name="bookshelves"
+        component={withEnvironment(withNavigation(ShelvesScreen))}
+      />
+      <Tab.Screen
+        name="notifications"
+        component={withEnvironment(withNavigation(NotificationsScreen))}
+      />
+      <Tab.Screen
+        name="profile"
+        component={withEnvironment(withNavigation(ProfileScreen))}
+      />
     </Tab.Navigator>
   );
 }
