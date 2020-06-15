@@ -1,8 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {graphql, QueryRenderer} from 'react-relay';
-import {ErrorScreen, LoadingScreen} from '.';
-import {HomeTabIcon} from '../icons';
+import {StyleSheet, Text, View, TouchableHighlight} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Header} from 'react-native-elements';
+import SearchScreen from './SearchScreen';
+import {withProps} from '../hoc';
+import {SearchTabIcon} from '../icons';
 
 interface Props {
   environment: any;
@@ -10,48 +12,48 @@ interface Props {
   renderProps: any;
 }
 
-export default (props: any) => {
+const Stack = createStackNavigator();
+
+const HomeScreen = (props: Props) => {
   const {navigation, environment} = props;
 
-  const renderQuery = (renderProps: any) => {
-    const {error, props} = renderProps;
-
-    if (error) {
-      return <ErrorScreen navigation={navigation} error={renderProps.error} />;
-    }
-    if (!props) {
-      return <LoadingScreen navigation={navigation} />;
-    }
-
+  const SearchButton = () => {
     return (
-      <View style={styles.container}>
-        <HomeTabIcon />
-      </View>
+      <TouchableHighlight onPress={() => navigation.navigate('search')}>
+        <SearchTabIcon />
+      </TouchableHighlight>
     );
   };
 
   return (
-    <QueryRenderer
-      environment={environment}
-      query={graphql`
-        query HomeScreenQuery {
-          allAuthors {
-            id
-            firstName
-            lastName
-          }
-        }
-      `}
-      render={renderQuery}
-      variables={{}}
-    />
+    <View>
+      <Header
+        centerComponent={{text: 'MY TITLE', style: {marginTop: 5}}}
+        rightComponent={<SearchButton />}
+        containerStyle={{
+          backgroundColor: '#D3D3D3',
+          height: 64,
+        }}
+      />
+      <Text>Home Screen </Text>
+    </View>
   );
 };
+
+const HomeStack = (props: Props) => {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="home" component={withProps(HomeScreen, props)} />
+      <Stack.Screen name="search" component={withProps(SearchScreen, props)} />
+    </Stack.Navigator>
+  );
+};
+
+export default HomeStack;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
 });

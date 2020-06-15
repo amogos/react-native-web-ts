@@ -6,6 +6,7 @@ import {withNavigation} from 'react-navigation';
 
 import RelayEnvironment from './RelayEnvironment';
 import {GetLocalizedStrings} from './localization';
+import {withEnvironment} from './hoc';
 
 import {
   HomeScreen,
@@ -27,16 +28,6 @@ import {
   NotificationTabIcon,
   BookmarksTabIcon,
 } from './icons';
-
-function withEnvironment(WrappedComponent: any) {
-  return class extends React.Component<any, any> {
-    public render() {
-      return (
-        <WrappedComponent {...this.props} environment={RelayEnvironment} />
-      );
-    }
-  };
-}
 
 const Stack = createStackNavigator();
 
@@ -82,23 +73,38 @@ function Home() {
       }}>
       <Tab.Screen
         name="home"
-        component={withEnvironment(withNavigation(HomeScreen))}
+        component={withEnvironment(
+          withNavigation(HomeScreen),
+          RelayEnvironment,
+        )}
       />
       <Tab.Screen
         name="bookmarks"
-        component={withEnvironment(withNavigation(BookmarksScreen))}
+        component={withEnvironment(
+          withNavigation(BookmarksScreen),
+          RelayEnvironment,
+        )}
       />
       <Tab.Screen
         name="bookshelves"
-        component={withEnvironment(withNavigation(ShelvesScreen))}
+        component={withEnvironment(
+          withNavigation(ShelvesScreen),
+          RelayEnvironment,
+        )}
       />
       <Tab.Screen
         name="notifications"
-        component={withEnvironment(withNavigation(NotificationsScreen))}
+        component={withEnvironment(
+          withNavigation(NotificationsScreen),
+          RelayEnvironment,
+        )}
       />
       <Tab.Screen
         name="profile"
-        component={withEnvironment(withNavigation(ProfileScreen))}
+        component={withEnvironment(
+          withNavigation(ProfileScreen),
+          RelayEnvironment,
+        )}
       />
     </Tab.Navigator>
   );
