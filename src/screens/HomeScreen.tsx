@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {graphql, QueryRenderer} from 'react-relay';
-
 import {ErrorScreen, LoadingScreen} from '.';
 import {HomeTabIcon} from '../icons';
 

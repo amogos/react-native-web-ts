@@ -3,9 +3,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {withNavigation} from 'react-navigation';
-import {Image} from 'react-native-elements';
 
 import RelayEnvironment from './RelayEnvironment';
+import {GetLocalizedStrings} from './localization';
 
 import {
   HomeScreen,
@@ -46,6 +46,8 @@ function Profile() {
 const Tab = createBottomTabNavigator();
 
 function Home() {
+  const translations = GetLocalizedStrings();
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -68,14 +70,14 @@ function Home() {
         inactiveTintColor: 'gray',
       }}>
       <Tab.Screen
-        name="home"
+        name={translations.id_home}
         component={withEnvironment(withNavigation(HomeScreen))}
       />
       <Tab.Screen
-        name="search"
+        name={translations.id_search}
         component={withEnvironment(withNavigation(SearchScreen))}
       />
-      <Tab.Screen name="profile" component={ProfileScreen} />
+      <Tab.Screen name={translations.id_profile} component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
