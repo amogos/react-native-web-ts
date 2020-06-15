@@ -7,6 +7,7 @@ const NotificationTabIcon = () => <Icon name="bell" size={20} />;
 const ProfileTabIcon = () => <Icon name="user" size={20} />;
 const SearchTabIcon = () => <Icon name="search" size={20} />;
 const UndefinedIcon = () => <Icon name="question" size={20} />;
+const BookmarksTabIcon = () => <Icon name="bookmark" size={20} />;
 
 export {
   HomeTabIcon,
@@ -15,4 +16,5 @@ export {
   UndefinedIcon,
   BookshelfTabIcon,
   NotificationTabIcon,
+  BookmarksTabIcon
 };

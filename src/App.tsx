@@ -15,6 +15,7 @@ import {
   LoadingScreen,
   ShelvesScreen,
   NotificationsScreen,
+  BookmarksScreen,
 } from './screens';
 
 import {
@@ -24,6 +25,7 @@ import {
   UndefinedIcon,
   BookshelfTabIcon,
   NotificationTabIcon,
+  BookmarksTabIcon,
 } from './icons';
 
 function withEnvironment(WrappedComponent: any) {
@@ -61,8 +63,8 @@ function Home() {
 
           if (route.name === 'home') {
             return focused ? <HomeTabIcon /> : <HomeTabIcon />;
-          } else if (route.name === 'search') {
-            return focused ? <SearchTabIcon /> : <SearchTabIcon />;
+          } else if (route.name === 'bookmarks') {
+            return focused ? <BookmarksTabIcon /> : <BookmarksTabIcon />;
           } else if (route.name === 'bookshelves') {
             return focused ? <BookshelfTabIcon /> : <BookshelfTabIcon />;
           } else if (route.name === 'notifications') {
@@ -83,8 +85,8 @@ function Home() {
         component={withEnvironment(withNavigation(HomeScreen))}
       />
       <Tab.Screen
-        name="search"
-        component={withEnvironment(withNavigation(SearchScreen))}
+        name="bookmarks"
+        component={withEnvironment(withNavigation(BookmarksScreen))}
       />
       <Tab.Screen
         name="bookshelves"
