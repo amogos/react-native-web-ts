@@ -2,15 +2,12 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-import {withNavigation} from 'react-navigation';
-
 import RelayEnvironment from './RelayEnvironment';
-import {GetLocalizedStrings} from './localization';
+import {withNavigation} from 'react-navigation';
 import {withEnvironment} from './hoc';
 
 import {
   HomeScreen,
-  SearchScreen,
   ProfileScreen,
   ErrorScreen,
   LoadingScreen,
@@ -19,15 +16,21 @@ import {
   BookmarksScreen,
 } from './screens';
 
-import {
+import {BottomTabIcons} from './icons';
+
+const {
   HomeTabIcon,
+  HomeTabIconFocused,
   ProfileTabIcon,
-  SearchTabIcon,
+  ProfileTabIconFocused,
   UndefinedIcon,
   BookshelfTabIcon,
+  BookshelfTabIconFocused,
   NotificationTabIcon,
+  NotificationTabIconFocused,
   BookmarksTabIcon,
-} from './icons';
+  BookmarksTabIconFocused,
+ } = BottomTabIcons;
 
 const Stack = createStackNavigator();
 
@@ -43,8 +46,6 @@ function Profile() {
 const Tab = createBottomTabNavigator();
 
 function Home() {
-  const translations = GetLocalizedStrings();
-
   return (
     <Tab.Navigator
       initialRouteName="home"
@@ -53,15 +54,19 @@ function Home() {
           let icon;
 
           if (route.name === 'home') {
-            return focused ? <HomeTabIcon /> : <HomeTabIcon />;
+            return focused ? <HomeTabIconFocused /> : <HomeTabIcon />;
           } else if (route.name === 'bookmarks') {
-            return focused ? <BookmarksTabIcon /> : <BookmarksTabIcon />;
+            return focused ? <BookmarksTabIconFocused /> : <BookmarksTabIcon />;
           } else if (route.name === 'bookshelves') {
-            return focused ? <BookshelfTabIcon /> : <BookshelfTabIcon />;
+            return focused ? <BookshelfTabIconFocused /> : <BookshelfTabIcon />;
           } else if (route.name === 'notifications') {
-            return focused ? <NotificationTabIcon /> : <NotificationTabIcon />;
+            return focused ? (
+              <NotificationTabIconFocused />
+            ) : (
+              <NotificationTabIcon />
+            );
           } else if (route.name === 'profile') {
-            return focused ? <ProfileTabIcon /> : <ProfileTabIcon />;
+            return focused ? <ProfileTabIconFocused /> : <ProfileTabIcon />;
           }
           return <UndefinedIcon />;
         },

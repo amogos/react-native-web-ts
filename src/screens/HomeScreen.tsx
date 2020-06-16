@@ -4,13 +4,15 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Header} from 'react-native-elements';
 import SearchScreen from './SearchScreen';
 import {withProps} from '../hoc';
-import {SearchTabIcon} from '../icons';
+import {BottomTabIcons} from '../icons';
 
 interface Props {
   environment: any;
   navigation: any;
   renderProps: any;
 }
+
+const {SearchTabIcon} = BottomTabIcons;
 
 const Stack = createStackNavigator();
 
