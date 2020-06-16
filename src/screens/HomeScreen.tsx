@@ -1,9 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableHighlight} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
 import {Header} from 'react-native-elements';
-import SearchScreen from './SearchScreen';
-import {withProps} from '../hoc';
+import {GetLocalizedStrings} from './../localization/index';
 import {BottomTabIcons} from '../icons';
 
 interface Props {
@@ -13,8 +11,6 @@ interface Props {
 }
 
 const {SearchTabIcon} = BottomTabIcons;
-
-const Stack = createStackNavigator();
 
 const HomeScreen = (props: Props) => {
   const {navigation, environment} = props;
@@ -30,7 +26,10 @@ const HomeScreen = (props: Props) => {
   return (
     <View>
       <Header
-        centerComponent={{text: 'MY TITLE', style: {marginTop: 5}}}
+        centerComponent={{
+          text: `${GetLocalizedStrings().id_app}`,
+          style: {marginTop: 5},
+        }}
         rightComponent={<SearchButton />}
         containerStyle={{
           backgroundColor: '#D3D3D3',
@@ -42,16 +41,7 @@ const HomeScreen = (props: Props) => {
   );
 };
 
-const HomeStack = (props: Props) => {
-  return (
-    <Stack.Navigator headerMode="none">
-      <Stack.Screen name="home" component={withProps(HomeScreen, props)} />
-      <Stack.Screen name="search" component={withProps(SearchScreen, props)} />
-    </Stack.Navigator>
-  );
-};
-
-export default HomeStack;
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {

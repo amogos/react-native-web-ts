@@ -1,8 +1,6 @@
 const en = {
-  id_profile: 'profile',
-  id_search: 'search',
-  id_home: 'home',
-  id_shelves: 'shelves',
+  id_app: 'My App',
+  
 };
 
 export default en;

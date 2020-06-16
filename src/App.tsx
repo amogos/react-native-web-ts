@@ -14,6 +14,7 @@ import {
   ShelvesScreen,
   NotificationsScreen,
   BookmarksScreen,
+  SearchScreen,
 } from './screens';
 
 import {BottomTabIcons} from './icons';
@@ -45,7 +46,7 @@ function Profile() {
 
 const Tab = createBottomTabNavigator();
 
-function Home() {
+const BottomTabs = () => {
   return (
     <Tab.Navigator
       initialRouteName="home"
@@ -115,9 +116,20 @@ function Home() {
   );
 }
 
+const MainStack = createStackNavigator();
+
+const HomeStack = () => {
+  return (
+    <MainStack.Navigator headerMode="none">
+      <MainStack.Screen name="home" component={BottomTabs} />
+      <MainStack.Screen name="search" component={SearchScreen} />
+    </MainStack.Navigator>
+  );
+};
+
 export default () => (
   <NavigationContainer
     linking={{enabled: true, prefixes: ['https://myapp.com', 'myapp://']}}>
-    <Home />
+    <HomeStack />
   </NavigationContainer>
 );
