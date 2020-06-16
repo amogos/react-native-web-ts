@@ -1,15 +1,14 @@
 import * as React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import {GroupsScreen, ShelvesScreen, BookmarksScreen, MissingScreen} from '.';
 import {GetLocalizedStrings} from './../localization/index';
+import {ScrollView} from 'react-native-gesture-handler';
 
 export default ({navigation}: {navigation: any}) => {
   const localizedStrings = GetLocalizedStrings();
 
   return (
-    <View>
+    <ScrollView>
       <ListItem
         onPress={() => navigation.navigate('groups')}
         key={0}
@@ -89,7 +88,7 @@ export default ({navigation}: {navigation: any}) => {
         bottomDivider
         chevron
       />
-    </View>
+    </ScrollView>
   );
 };
 
