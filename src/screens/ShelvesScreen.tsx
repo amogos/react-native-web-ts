@@ -1,15 +1,32 @@
 import * as React from 'react';
-import {View, Text} from 'react-native';
-import {Button} from 'react-native-elements';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import MissingScreen from './MissingScreen';
+import {GetLocalizedStrings} from './../localization/index';
 
 interface Props {
   navigation: any;
 }
 
-export default (props: Props) => {
+const Tab = createMaterialTopTabNavigator();
+
+const ShelvesTopTabs = () => {
+  const localizedStrings = GetLocalizedStrings();
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Shelves Screen</Text>
-    </View>
+    <Tab.Navigator lazy={true}>
+      <Tab.Screen
+        name={localizedStrings.id_shelves_left_tab}
+        component={MissingScreen}
+      />
+      <Tab.Screen
+        name={localizedStrings.id_shelves_center_tab}
+        component={MissingScreen}
+      />
+      <Tab.Screen
+        name={localizedStrings.id_shelves_right_tab}
+        component={MissingScreen}
+      />
+    </Tab.Navigator>
   );
 };
+
+export default ShelvesTopTabs;

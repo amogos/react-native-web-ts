@@ -16,7 +16,10 @@ const EN = {
   id_screen_groups_title: 'GROUPS',
   id_screen_bookmarks_title: 'BOOKMARKS',
   id_screen_stats_title: 'STATS',
-  id_search_placeholder: 'Title, Author, ISBN'
+  id_search_placeholder: 'Title, Author, ISBN',
+  id_shelves_left_tab: 'Shelves',
+  id_shelves_center_tab: 'Discover',
+  id_shelves_right_tab: 'Create',
 };
 
 export default EN;
