@@ -26,7 +26,7 @@ export default (props: Props) => {
     <View>
       <Header
         leftComponent={<BackButton />}
-        rightComponent={<Text>{title}</Text>}
+        centerComponent={<Text>{title}</Text>}
         containerStyle={{
           height: 64,
           backgroundColor: '#FFFFFF',
