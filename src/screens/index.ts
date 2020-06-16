@@ -1,3 +1,4 @@
+// screens
 import BookmarksScreen from './BookmarksScreen';
 import ErrorScreen from './ErrorScreen';
 import GroupsScreen from './GroupsScreen';
@@ -6,9 +7,10 @@ import LoadingScreen from './LoadingScreen';
 import ProfileScreen from './ProfileScreen';
 import ShelvesScreen from './ShelvesScreen';
 import SearchScreen from './SearchScreen';
-import NotificationsScreen from './NotificationsScreen'
+import NotificationsScreen from './NotificationsScreen';
 
 export {
+  //  screens
   BookmarksScreen,
   ErrorScreen,
   GroupsScreen,
@@ -17,5 +19,5 @@ export {
   ProfileScreen,
   ShelvesScreen,
   SearchScreen,
-  NotificationsScreen
+  NotificationsScreen,
 };

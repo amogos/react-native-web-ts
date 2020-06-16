@@ -1,14 +1,18 @@
 import * as React from 'react';
 import {View, Text} from 'react-native';
-import {Image} from 'react-native-elements';
 import {BottomTabIcons} from '../icons';
-
+import SearchHeader from './headers/SearchHeader';
 const {SearchTabIcon} = BottomTabIcons;
 
-export default ({navigation}: {navigation: any}) => {
+interface Props {
+  navigation: any;
+}
+
+export default (props: Props) => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <SearchTabIcon />
+    <View>
+      <SearchHeader {...props} />
+      <Text>Search Screen</Text>
     </View>
   );
 };
