@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, Text} from 'react-native';
 import {BottomTabIcons} from '../icons';
-import SearchHeader from './headers/SearchHeader';
+import Header from './SearchScreenHeader';
 const {SearchTabIcon} = BottomTabIcons;
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 export default (props: Props) => {
   return (
     <View>
-      <SearchHeader {...props} />
+      <Header {...props} />
       <Text>Search Screen</Text>
     </View>
   );

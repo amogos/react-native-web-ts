@@ -1,4 +1,3 @@
-// screens
 import BookmarksScreen from './BookmarksScreen';
 import ErrorScreen from './ErrorScreen';
 import GroupsScreen from './GroupsScreen';
@@ -10,7 +9,6 @@ import SearchScreen from './SearchScreen';
 import NotificationsScreen from './NotificationsScreen';
 
 export {
-  //  screens
   BookmarksScreen,
   ErrorScreen,
   GroupsScreen,
