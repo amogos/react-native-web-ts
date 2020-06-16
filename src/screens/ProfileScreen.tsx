@@ -5,7 +5,7 @@ import {ListItem} from 'react-native-elements';
 import {GroupsScreen, ShelvesScreen, BookmarksScreen, MissingScreen} from '.';
 import {GetLocalizedStrings} from './../localization/index';
 
-function You({navigation}: {navigation: any}) {
+export default ({navigation}: {navigation: any}) => {
   const localizedStrings = GetLocalizedStrings();
 
   return (
@@ -90,27 +90,6 @@ function You({navigation}: {navigation: any}) {
         chevron
       />
     </View>
-  );
-}
-
-const Stack = createStackNavigator();
-
-export default (props: any) => {
-  return (
-    <Stack.Navigator headerMode="none">
-      <Stack.Screen name="you" component={You} />
-      <Stack.Screen name="groups" component={GroupsScreen} />
-      <Stack.Screen name="bookmarks" component={BookmarksScreen} />
-      <Stack.Screen name="shelves" component={ShelvesScreen} />
-      <Stack.Screen name="rented-out" component={MissingScreen} />
-      <Stack.Screen name="reading-list" component={MissingScreen} />
-      <Stack.Screen name="events" component={MissingScreen} />
-      <Stack.Screen name="settings" component={MissingScreen} />
-      <Stack.Screen name="customize-interests" component={MissingScreen} />
-      <Stack.Screen name="help" component={MissingScreen} />
-      <Stack.Screen name="terms-of-service" component={MissingScreen} />
-      <Stack.Screen name="privacy-policy" component={MissingScreen} />
-    </Stack.Navigator>
   );
 };
 

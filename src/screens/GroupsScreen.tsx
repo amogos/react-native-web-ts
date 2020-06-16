@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text} from 'react-native';
-import {Button} from 'react-native-elements';
+import Header from './GroupsScreenHeader';
 
 interface Props {
   navigation: any;
@@ -8,7 +8,8 @@ interface Props {
 
 export default (props: Props) => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View>
+      <Header {...props} />
       <Text>Groups Screen</Text>
     </View>
   );

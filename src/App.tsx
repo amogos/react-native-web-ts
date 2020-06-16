@@ -9,12 +9,12 @@ import {withEnvironment} from './hoc';
 import {
   HomeScreen,
   ProfileScreen,
-  ErrorScreen,
-  LoadingScreen,
   ShelvesScreen,
   NotificationsScreen,
   BookmarksScreen,
   SearchScreen,
+  GroupsScreen,
+  MissingScreen,
 } from './screens';
 
 import {BottomTabIcons} from './icons';
@@ -31,18 +31,7 @@ const {
   NotificationTabIconFocused,
   BookmarksTabIcon,
   BookmarksTabIconFocused,
- } = BottomTabIcons;
-
-const Stack = createStackNavigator();
-
-function Profile() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Feed" component={ErrorScreen} />
-      <Stack.Screen name="Notifications" component={LoadingScreen} />
-    </Stack.Navigator>
-  );
-}
+} = BottomTabIcons;
 
 const Tab = createBottomTabNavigator();
 
@@ -114,7 +103,7 @@ const BottomTabs = () => {
       />
     </Tab.Navigator>
   );
-}
+};
 
 const MainStack = createStackNavigator();
 
@@ -123,6 +112,17 @@ const HomeStack = () => {
     <MainStack.Navigator headerMode="none">
       <MainStack.Screen name="home" component={BottomTabs} />
       <MainStack.Screen name="search" component={SearchScreen} />
+      <MainStack.Screen name="groups" component={GroupsScreen} />
+      <MainStack.Screen name="bookmarks" component={BookmarksScreen} />
+      <MainStack.Screen name="shelves" component={ShelvesScreen} />
+      <MainStack.Screen name="rented-out" component={MissingScreen} />
+      <MainStack.Screen name="reading-list" component={MissingScreen} />
+      <MainStack.Screen name="events" component={MissingScreen} />
+      <MainStack.Screen name="settings" component={MissingScreen} />
+      <MainStack.Screen name="customize-interests" component={MissingScreen} />
+      <MainStack.Screen name="help" component={MissingScreen} />
+      <MainStack.Screen name="terms-of-service" component={MissingScreen} />
+      <MainStack.Screen name="privacy-policy" component={MissingScreen} />
     </MainStack.Navigator>
   );
 };

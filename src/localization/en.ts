@@ -13,7 +13,8 @@ const en = {
   id_profile_settings_customize_interests: 'Customize interests',
   id_profile_help: 'Help',
   id_profile_terms_of_service: 'Terms of service',
-  id_profile_privacy_policy: 'Privacy Policy'
+  id_profile_privacy_policy: 'Privacy Policy',
+  id_screen_groups_title: 'GROUPS',
 };
 
 export default en;
