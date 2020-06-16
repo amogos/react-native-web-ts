@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {View, Text} from 'react-native';
-import {Button} from 'react-native-elements';
+import {Text, SafeAreaView} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import Header from './BookmarksScreenHeader';
 
 interface Props {
   navigation: any;
@@ -8,8 +9,11 @@ interface Props {
 
 export default (props: Props) => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Bookmarks Screen</Text>
-    </View>
+    <SafeAreaView>
+      <Header {...props} />
+      <ScrollView>
+        <Text>Bookmarks Screen</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 };

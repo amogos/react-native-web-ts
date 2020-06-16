@@ -15,6 +15,7 @@ import {
   SearchScreen,
   GroupsScreen,
   MissingScreen,
+  StatsScreen
 } from './screens';
 
 import {BottomTabIcons} from './icons';
@@ -113,10 +114,7 @@ const HomeStack = () => {
       <MainStack.Screen name="home" component={BottomTabs} />
       <MainStack.Screen name="search" component={SearchScreen} />
       <MainStack.Screen name="groups" component={GroupsScreen} />
-      <MainStack.Screen name="bookmarks" component={BookmarksScreen} />
-      <MainStack.Screen name="shelves" component={ShelvesScreen} />
-      <MainStack.Screen name="rented-out" component={MissingScreen} />
-      <MainStack.Screen name="reading-list" component={MissingScreen} />
+      <MainStack.Screen name="stats" component={StatsScreen} />
       <MainStack.Screen name="events" component={MissingScreen} />
       <MainStack.Screen name="settings" component={MissingScreen} />
       <MainStack.Screen name="customize-interests" component={MissingScreen} />

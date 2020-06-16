@@ -8,6 +8,7 @@ import ShelvesScreen from './ShelvesScreen';
 import SearchScreen from './SearchScreen';
 import NotificationsScreen from './NotificationsScreen';
 import MissingScreen from './MissingScreen'
+import StatsScreen from './StatsScreen'
 
 export {
   BookmarksScreen,
@@ -19,5 +20,6 @@ export {
   ShelvesScreen,
   SearchScreen,
   NotificationsScreen,
-  MissingScreen
+  MissingScreen,
+  StatsScreen
 };
